@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		056D24831A2F9699003BD7DF /* POIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24821A2F9699003BD7DF /* POIViewController.m */; };
 		059E32141A2F757B001822C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E32131A2F757B001822C0 /* main.m */; };
 		059E32171A2F757B001822C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E32161A2F757B001822C0 /* AppDelegate.m */; };
 		059E321A1A2F757B001822C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E32191A2F757B001822C0 /* ViewController.m */; };
@@ -14,6 +15,7 @@
 		059E321F1A2F757B001822C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 059E321E1A2F757B001822C0 /* Images.xcassets */; };
 		059E32221A2F757B001822C0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059E32201A2F757B001822C0 /* LaunchScreen.xib */; };
 		059E322E1A2F757B001822C0 /* BlocSpotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E322D1A2F757B001822C0 /* BlocSpotTests.m */; };
+		059E32381A2F7636001822C0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059E32371A2F7636001822C0 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		056D24811A2F9699003BD7DF /* POIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POIViewController.h; sourceTree = "<group>"; };
+		056D24821A2F9699003BD7DF /* POIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POIViewController.m; sourceTree = "<group>"; };
 		059E320E1A2F757B001822C0 /* BlocSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		059E32121A2F757B001822C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		059E32131A2F757B001822C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +44,7 @@
 		059E32271A2F757B001822C0 /* BlocSpotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlocSpotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		059E322C1A2F757B001822C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		059E322D1A2F757B001822C0 /* BlocSpotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlocSpotTests.m; sourceTree = "<group>"; };
+		059E32371A2F7636001822C0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				059E32381A2F7636001822C0 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +69,7 @@
 		059E32051A2F757A001822C0 = {
 			isa = PBXGroup;
 			children = (
+				059E32371A2F7636001822C0 /* MapKit.framework */,
 				059E32101A2F757B001822C0 /* BlocSpot */,
 				059E322A1A2F757B001822C0 /* BlocSpotTests */,
 				059E320F1A2F757B001822C0 /* Products */,
@@ -86,6 +93,8 @@
 				059E32181A2F757B001822C0 /* ViewController.h */,
 				059E32191A2F757B001822C0 /* ViewController.m */,
 				059E321B1A2F757B001822C0 /* Main.storyboard */,
+				056D24811A2F9699003BD7DF /* POIViewController.h */,
+				056D24821A2F9699003BD7DF /* POIViewController.m */,
 				059E321E1A2F757B001822C0 /* Images.xcassets */,
 				059E32201A2F757B001822C0 /* LaunchScreen.xib */,
 				059E32111A2F757B001822C0 /* Supporting Files */,
@@ -168,6 +177,12 @@
 				TargetAttributes = {
 					059E320D1A2F757B001822C0 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 6QHDV6JE6P;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					059E32261A2F757B001822C0 = {
 						CreatedOnToolsVersion = 6.1;
@@ -220,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				059E321A1A2F757B001822C0 /* ViewController.m in Sources */,
+				056D24831A2F9699003BD7DF /* POIViewController.m in Sources */,
 				059E32171A2F757B001822C0 /* AppDelegate.m in Sources */,
 				059E32141A2F757B001822C0 /* main.m in Sources */,
 			);
@@ -345,9 +361,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BlocSpot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -355,9 +374,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BlocSpot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -414,6 +436,7 @@
 				059E32331A2F757B001822C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		059E32341A2F757B001822C0 /* Build configuration list for PBXNativeTarget "BlocSpotTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +445,7 @@
 				059E32361A2F757B001822C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
