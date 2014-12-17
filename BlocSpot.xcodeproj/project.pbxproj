@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		056D24831A2F9699003BD7DF /* POIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24821A2F9699003BD7DF /* POIViewController.m */; };
+		052524CB1A3BD95E00C7F4D4 /* PointOfInterest.m in Sources */ = {isa = PBXBuildFile; fileRef = 052524CA1A3BD95E00C7F4D4 /* PointOfInterest.m */; };
+		052524CE1A3BD95F00C7F4D4 /* LocationCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 052524CD1A3BD95F00C7F4D4 /* LocationCategory.m */; };
+		054989C01A3FD94F00A560C8 /* AddNewCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054989BF1A3FD94F00A560C8 /* AddNewCategoryViewController.m */; };
+		056D24BB1A30C4EF003BD7DF /* BlocSpot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 056D24B91A30C4EF003BD7DF /* BlocSpot.xcdatamodeld */; };
+		056D24BE1A311C6D003BD7DF /* PointsOfInterestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24BD1A311C6D003BD7DF /* PointsOfInterestTableViewController.m */; };
+		056D24C11A3124E5003BD7DF /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24C01A3124E5003BD7DF /* MapViewController.m */; };
+		056D24DC1A325C90003BD7DF /* PointOfInterest+Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24DB1A325C90003BD7DF /* PointOfInterest+Annotation.m */; };
+		056D24DF1A326A10003BD7DF /* SearchResultObjectAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24DE1A326A10003BD7DF /* SearchResultObjectAnnotation.m */; };
+		056D24E21A3365D9003BD7DF /* SearchedObjectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24E11A3365D9003BD7DF /* SearchedObjectDetailViewController.m */; };
+		059C56271A3C990A00FD7CDF /* LocationCategory+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 059C56261A3C990A00FD7CDF /* LocationCategory+Create.m */; };
 		059E32141A2F757B001822C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E32131A2F757B001822C0 /* main.m */; };
 		059E32171A2F757B001822C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E32161A2F757B001822C0 /* AppDelegate.m */; };
-		059E321A1A2F757B001822C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E32191A2F757B001822C0 /* ViewController.m */; };
 		059E321D1A2F757B001822C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 059E321B1A2F757B001822C0 /* Main.storyboard */; };
 		059E321F1A2F757B001822C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 059E321E1A2F757B001822C0 /* Images.xcassets */; };
 		059E32221A2F757B001822C0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059E32201A2F757B001822C0 /* LaunchScreen.xib */; };
@@ -29,15 +37,30 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		056D24811A2F9699003BD7DF /* POIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POIViewController.h; sourceTree = "<group>"; };
-		056D24821A2F9699003BD7DF /* POIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POIViewController.m; sourceTree = "<group>"; };
+		052524C91A3BD95E00C7F4D4 /* PointOfInterest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointOfInterest.h; sourceTree = "<group>"; };
+		052524CA1A3BD95E00C7F4D4 /* PointOfInterest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointOfInterest.m; sourceTree = "<group>"; };
+		052524CC1A3BD95F00C7F4D4 /* LocationCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCategory.h; sourceTree = "<group>"; };
+		052524CD1A3BD95F00C7F4D4 /* LocationCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCategory.m; sourceTree = "<group>"; };
+		054989BE1A3FD94F00A560C8 /* AddNewCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewCategoryViewController.h; sourceTree = "<group>"; };
+		054989BF1A3FD94F00A560C8 /* AddNewCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewCategoryViewController.m; sourceTree = "<group>"; };
+		056D24BA1A30C4EF003BD7DF /* BlocSpot.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BlocSpot.xcdatamodel; sourceTree = "<group>"; };
+		056D24BC1A311C6D003BD7DF /* PointsOfInterestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsOfInterestTableViewController.h; sourceTree = "<group>"; };
+		056D24BD1A311C6D003BD7DF /* PointsOfInterestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsOfInterestTableViewController.m; sourceTree = "<group>"; };
+		056D24BF1A3124E5003BD7DF /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		056D24C01A3124E5003BD7DF /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		056D24DA1A325C90003BD7DF /* PointOfInterest+Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PointOfInterest+Annotation.h"; sourceTree = "<group>"; };
+		056D24DB1A325C90003BD7DF /* PointOfInterest+Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PointOfInterest+Annotation.m"; sourceTree = "<group>"; };
+		056D24DD1A326A10003BD7DF /* SearchResultObjectAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultObjectAnnotation.h; sourceTree = "<group>"; };
+		056D24DE1A326A10003BD7DF /* SearchResultObjectAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultObjectAnnotation.m; sourceTree = "<group>"; };
+		056D24E01A3365D9003BD7DF /* SearchedObjectDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchedObjectDetailViewController.h; sourceTree = "<group>"; };
+		056D24E11A3365D9003BD7DF /* SearchedObjectDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchedObjectDetailViewController.m; sourceTree = "<group>"; };
+		059C56251A3C990A00FD7CDF /* LocationCategory+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LocationCategory+Create.h"; sourceTree = "<group>"; };
+		059C56261A3C990A00FD7CDF /* LocationCategory+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LocationCategory+Create.m"; sourceTree = "<group>"; };
 		059E320E1A2F757B001822C0 /* BlocSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlocSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		059E32121A2F757B001822C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		059E32131A2F757B001822C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		059E32151A2F757B001822C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		059E32161A2F757B001822C0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		059E32181A2F757B001822C0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		059E32191A2F757B001822C0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		059E321C1A2F757B001822C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		059E321E1A2F757B001822C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		059E32211A2F757B001822C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -88,13 +111,28 @@
 		059E32101A2F757B001822C0 /* BlocSpot */ = {
 			isa = PBXGroup;
 			children = (
+				056D24DA1A325C90003BD7DF /* PointOfInterest+Annotation.h */,
+				056D24DB1A325C90003BD7DF /* PointOfInterest+Annotation.m */,
 				059E32151A2F757B001822C0 /* AppDelegate.h */,
 				059E32161A2F757B001822C0 /* AppDelegate.m */,
-				059E32181A2F757B001822C0 /* ViewController.h */,
-				059E32191A2F757B001822C0 /* ViewController.m */,
+				056D24B91A30C4EF003BD7DF /* BlocSpot.xcdatamodeld */,
+				052524CC1A3BD95F00C7F4D4 /* LocationCategory.h */,
+				052524CD1A3BD95F00C7F4D4 /* LocationCategory.m */,
+				052524C91A3BD95E00C7F4D4 /* PointOfInterest.h */,
+				052524CA1A3BD95E00C7F4D4 /* PointOfInterest.m */,
+				056D24BF1A3124E5003BD7DF /* MapViewController.h */,
+				056D24C01A3124E5003BD7DF /* MapViewController.m */,
+				056D24DD1A326A10003BD7DF /* SearchResultObjectAnnotation.h */,
+				056D24DE1A326A10003BD7DF /* SearchResultObjectAnnotation.m */,
 				059E321B1A2F757B001822C0 /* Main.storyboard */,
-				056D24811A2F9699003BD7DF /* POIViewController.h */,
-				056D24821A2F9699003BD7DF /* POIViewController.m */,
+				054989BE1A3FD94F00A560C8 /* AddNewCategoryViewController.h */,
+				054989BF1A3FD94F00A560C8 /* AddNewCategoryViewController.m */,
+				056D24E01A3365D9003BD7DF /* SearchedObjectDetailViewController.h */,
+				056D24E11A3365D9003BD7DF /* SearchedObjectDetailViewController.m */,
+				059C56251A3C990A00FD7CDF /* LocationCategory+Create.h */,
+				059C56261A3C990A00FD7CDF /* LocationCategory+Create.m */,
+				056D24BC1A311C6D003BD7DF /* PointsOfInterestTableViewController.h */,
+				056D24BD1A311C6D003BD7DF /* PointsOfInterestTableViewController.m */,
 				059E321E1A2F757B001822C0 /* Images.xcassets */,
 				059E32201A2F757B001822C0 /* LaunchScreen.xib */,
 				059E32111A2F757B001822C0 /* Supporting Files */,
@@ -234,8 +272,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				059E321A1A2F757B001822C0 /* ViewController.m in Sources */,
-				056D24831A2F9699003BD7DF /* POIViewController.m in Sources */,
+				052524CE1A3BD95F00C7F4D4 /* LocationCategory.m in Sources */,
+				056D24BB1A30C4EF003BD7DF /* BlocSpot.xcdatamodeld in Sources */,
+				056D24DF1A326A10003BD7DF /* SearchResultObjectAnnotation.m in Sources */,
+				056D24DC1A325C90003BD7DF /* PointOfInterest+Annotation.m in Sources */,
+				056D24BE1A311C6D003BD7DF /* PointsOfInterestTableViewController.m in Sources */,
+				054989C01A3FD94F00A560C8 /* AddNewCategoryViewController.m in Sources */,
+				059C56271A3C990A00FD7CDF /* LocationCategory+Create.m in Sources */,
+				052524CB1A3BD95E00C7F4D4 /* PointOfInterest.m in Sources */,
+				056D24C11A3124E5003BD7DF /* MapViewController.m in Sources */,
+				056D24E21A3365D9003BD7DF /* SearchedObjectDetailViewController.m in Sources */,
 				059E32171A2F757B001822C0 /* AppDelegate.m in Sources */,
 				059E32141A2F757B001822C0 /* main.m in Sources */,
 			);
@@ -448,6 +494,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		056D24B91A30C4EF003BD7DF /* BlocSpot.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				056D24BA1A30C4EF003BD7DF /* BlocSpot.xcdatamodel */,
+			);
+			currentVersion = 056D24BA1A30C4EF003BD7DF /* BlocSpot.xcdatamodel */;
+			path = BlocSpot.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 059E32061A2F757A001822C0 /* Project object */;
 }
