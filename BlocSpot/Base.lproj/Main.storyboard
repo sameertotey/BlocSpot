@@ -164,7 +164,7 @@
                         <outlet property="selectCategoryButton" destination="TFG-Bl-qqQ" id="Rie-vp-t3x"/>
                         <outlet property="titleTextField" destination="63n-20-g7y" id="KPH-GF-yPV"/>
                         <outlet property="urlTextField" destination="DBL-RI-41p" id="Nbc-kv-Ubn"/>
-                        <segue destination="OPu-fk-DTP" kind="show" identifier="addLocationCategory" id="FQS-w4-mAK"/>
+                        <segue destination="vdM-ea-J2P" kind="presentation" identifier="addLocationCategory" id="FQS-w4-mAK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t7D-xG-DGy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -183,7 +183,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tnz-Mo-7nT">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tnz-Mo-7nT">
                                 <rect key="frame" x="252" y="80" width="97" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="97" id="PA8-fL-y3I"/>
@@ -194,7 +194,7 @@
                                     <outlet property="delegate" destination="OPu-fk-DTP" id="0jv-Zp-DOy"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aAe-g3-oNd">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aAe-g3-oNd">
                                 <rect key="frame" x="252" y="146" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -212,12 +212,33 @@
                             <constraint firstItem="Tnz-Mo-7nT" firstAttribute="leading" secondItem="aAe-g3-oNd" secondAttribute="leading" id="uXe-ev-9hm"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="zfT-5Y-OZM"/>
                     <connections>
                         <outlet property="categoryNameTextField" destination="Tnz-Mo-7nT" id="kcN-xx-nHO"/>
                         <outlet property="colorNameTextField" destination="aAe-g3-oNd" id="w0f-Vv-9Rk"/>
+                        <segue destination="Jn8-sK-Rc6" kind="unwind" identifier="addCategoryDismiss" unwindAction="unwindToAddCategoryViewControllerPresenter:" id="tbz-I4-KA0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nay-PA-beQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Jn8-sK-Rc6" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3284" y="403"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aLU-JE-g49">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vdM-ea-J2P" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jCq-an-nfB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="OPu-fk-DTP" kind="relationship" relationship="rootViewController" id="sEN-Cb-vUZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PrO-FO-CQV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2472" y="403"/>
         </scene>

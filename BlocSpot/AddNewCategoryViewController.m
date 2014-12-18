@@ -9,6 +9,8 @@
 #import "AddNewCategoryViewController.h"
 #import "LocationCategory+Create.h"
 
+static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
+
 @interface AddNewCategoryViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *categoryNameTextField;
@@ -26,12 +28,13 @@
     self.saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed)];
     
     self.navigationItem.rightBarButtonItem = self.saveButton;
+    self.navigationItem.leftBarButtonItem = self.cancelButton;
 }
 
 - (void)savePressed {
     NSLog(@"Save Pressed");
     [self saveManagedObject];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self performSegueWithIdentifier:kSegueAddCategoryDismiss sender:self];
 }
 
 - (void)saveManagedObject {
@@ -53,19 +56,23 @@
 
 
 - (void)cancelEditing {
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self performSegueWithIdentifier:kSegueAddCategoryDismiss sender:self];
 }
 
 #pragma mark - TextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self resignFirstResponder];
+    [textField resignFirstResponder];
+    NSLog(@"Should return textfield %@", textField.text);
+
     return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSLog(@"Did end textfield %@", textField.text);
     self.saveButton.enabled = NO;
-    if (self.categoryNameTextField.text && self.colorNameTextField.text) {
+    if ([self.categoryNameTextField.text length] && [self.colorNameTextField.text length]) {
         self.saveButton.enabled = YES;
     }
      // now save the managed object in the save
