@@ -165,6 +165,8 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
         for (LocationCategory *locationCategory in matches) {
             UIAlertAction *categoryAction = [UIAlertAction actionWithTitle:locationCategory.name style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                 NSLog(@" Action %@ selected", locationCategory.name);
+                self.managedDetailObject.locationCategory = locationCategory;
+                action.enabled = NO;
             }];
             [actionSheet addAction:categoryAction];
         }

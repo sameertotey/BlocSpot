@@ -64,19 +64,15 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
-    NSLog(@"Should return textfield %@", textField.text);
-
     return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    NSLog(@"Did end textfield %@", textField.text);
     self.saveButton.enabled = NO;
     if ([self.categoryNameTextField.text length] && [self.colorNameTextField.text length]) {
         self.saveButton.enabled = YES;
     }
      // now save the managed object in the save
-
 }
 
 

@@ -79,7 +79,7 @@
     [fetchRequest setEntity:entity];
     
     // Create the sort descriptors array.
-    NSSortDescriptor *locationCategoryDescriptor = [[NSSortDescriptor alloc] initWithKey:@"locationCategory" ascending:YES];
+    NSSortDescriptor *locationCategoryDescriptor = [[NSSortDescriptor alloc] initWithKey:@"locationCategory.name" ascending:YES];
     NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     NSArray *sortDescriptors = @[locationCategoryDescriptor, nameDescriptor];
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -105,8 +105,8 @@
     self.locationManager.distanceFilter = 500; // meters
     
     // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
-    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-        [self.locationManager requestWhenInUseAuthorization];
+    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        [self.locationManager requestAlwaysAuthorization];
     }
     
     [self.locationManager startUpdatingLocation];
@@ -360,7 +360,8 @@
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSLog(@"text did change to %@", searchText);
+//    NSLog(@"text did change to %@", searchText);
+    //Maybe fire a new search here
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
