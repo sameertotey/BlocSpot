@@ -25,7 +25,10 @@
 		059E32221A2F757B001822C0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059E32201A2F757B001822C0 /* LaunchScreen.xib */; };
 		059E322E1A2F757B001822C0 /* BlocSpotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E322D1A2F757B001822C0 /* BlocSpotTests.m */; };
 		059E32381A2F7636001822C0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059E32371A2F7636001822C0 /* MapKit.framework */; };
+		05AE23E81A44816D00C8D2BF /* POICalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AE23E71A44816D00C8D2BF /* POICalloutView.m */; };
+		05AE23EB1A45394B00C8D2BF /* CalloutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AE23EA1A45394B00C8D2BF /* CalloutViewController.m */; };
 		05B3554F1A420F74000B9FE9 /* ModalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B3554E1A420F74000B9FE9 /* ModalTransitionAnimator.m */; };
+		05B355521A436C82000B9FE9 /* BlocAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B355511A436C82000B9FE9 /* BlocAnnotationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +75,14 @@
 		059E322C1A2F757B001822C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		059E322D1A2F757B001822C0 /* BlocSpotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlocSpotTests.m; sourceTree = "<group>"; };
 		059E32371A2F7636001822C0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		05AE23E61A44816D00C8D2BF /* POICalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POICalloutView.h; sourceTree = "<group>"; };
+		05AE23E71A44816D00C8D2BF /* POICalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POICalloutView.m; sourceTree = "<group>"; };
+		05AE23E91A45394B00C8D2BF /* CalloutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalloutViewController.h; sourceTree = "<group>"; };
+		05AE23EA1A45394B00C8D2BF /* CalloutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalloutViewController.m; sourceTree = "<group>"; };
 		05B3554D1A420F74000B9FE9 /* ModalTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalTransitionAnimator.h; sourceTree = "<group>"; };
 		05B3554E1A420F74000B9FE9 /* ModalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalTransitionAnimator.m; sourceTree = "<group>"; };
+		05B355501A436C82000B9FE9 /* BlocAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocAnnotationView.h; sourceTree = "<group>"; };
+		05B355511A436C82000B9FE9 /* BlocAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocAnnotationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,9 +149,15 @@
 				052524CA1A3BD95E00C7F4D4 /* PointOfInterest.m */,
 				056D24BF1A3124E5003BD7DF /* MapViewController.h */,
 				056D24C01A3124E5003BD7DF /* MapViewController.m */,
+				05B355501A436C82000B9FE9 /* BlocAnnotationView.h */,
+				05B355511A436C82000B9FE9 /* BlocAnnotationView.m */,
+				05AE23E91A45394B00C8D2BF /* CalloutViewController.h */,
+				05AE23EA1A45394B00C8D2BF /* CalloutViewController.m */,
 				056D24DD1A326A10003BD7DF /* SearchResultObjectAnnotation.h */,
 				056D24DE1A326A10003BD7DF /* SearchResultObjectAnnotation.m */,
 				059E321B1A2F757B001822C0 /* Main.storyboard */,
+				05AE23E61A44816D00C8D2BF /* POICalloutView.h */,
+				05AE23E71A44816D00C8D2BF /* POICalloutView.m */,
 				054989BE1A3FD94F00A560C8 /* AddNewCategoryViewController.h */,
 				054989BF1A3FD94F00A560C8 /* AddNewCategoryViewController.m */,
 				056D24E01A3365D9003BD7DF /* SearchedObjectDetailViewController.h */,
@@ -292,15 +307,18 @@
 			files = (
 				052524CE1A3BD95F00C7F4D4 /* LocationCategory.m in Sources */,
 				056D24BB1A30C4EF003BD7DF /* BlocSpot.xcdatamodeld in Sources */,
+				05AE23E81A44816D00C8D2BF /* POICalloutView.m in Sources */,
 				056D24DF1A326A10003BD7DF /* SearchResultObjectAnnotation.m in Sources */,
 				056D24DC1A325C90003BD7DF /* PointOfInterest+Annotation.m in Sources */,
 				056D24BE1A311C6D003BD7DF /* PointsOfInterestTableViewController.m in Sources */,
 				054989C01A3FD94F00A560C8 /* AddNewCategoryViewController.m in Sources */,
 				059C56271A3C990A00FD7CDF /* LocationCategory+Create.m in Sources */,
+				05AE23EB1A45394B00C8D2BF /* CalloutViewController.m in Sources */,
 				054989C41A41E7BC00A560C8 /* BaseTransitionAnimator.m in Sources */,
 				052524CB1A3BD95E00C7F4D4 /* PointOfInterest.m in Sources */,
 				056D24C11A3124E5003BD7DF /* MapViewController.m in Sources */,
 				056D24E21A3365D9003BD7DF /* SearchedObjectDetailViewController.m in Sources */,
+				05B355521A436C82000B9FE9 /* BlocAnnotationView.m in Sources */,
 				05B3554F1A420F74000B9FE9 /* ModalTransitionAnimator.m in Sources */,
 				059E32171A2F757B001822C0 /* AppDelegate.m in Sources */,
 				059E32141A2F757B001822C0 /* main.m in Sources */,

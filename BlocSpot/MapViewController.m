@@ -10,6 +10,8 @@
 #import "PointOfInterest+Annotation.h"
 #import "SearchResultObjectAnnotation.h"
 #import "SearchedObjectDetailViewController.h"
+#import "BlocAnnotationView.h"
+#import "POICalloutView.h"
 
 
 @interface MapViewController ()
@@ -67,19 +69,30 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    MKPinAnnotationView *annotationView = nil;
+    // If the annotation is the user location, just return nil.
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    MKAnnotationView *annotationView = nil;
     if ([annotation isKindOfClass:[SearchResultObjectAnnotation class]])
     {
-        annotationView = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"Pin"];
+        annotationView = (BlocAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"Heart"];
         if (annotationView == nil)
         {
-            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
-            annotationView.canShowCallout = YES;
-            annotationView.animatesDrop = YES;
-                  
+            annotationView = [[BlocAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Heart"];
+//            annotationView.canShowCallout = YES;
+//            annotationView.animatesDrop = YES;
+            annotationView.canShowCallout = NO;
+            
+            // assign the annotation to the annotation view
+            annotationView.annotation = annotation;
+            
             UIButton *rightCallout = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             annotationView.rightCalloutAccessoryView = rightCallout;
             
+            UILabel *leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
+            leftLabel.text = @"left hand accessory";
+            annotationView.leftCalloutAccessoryView = leftLabel;
         }
     }
     return annotationView;
@@ -93,6 +106,28 @@ calloutAccessoryControlTapped:(UIControl *)control {
     [self performSegueWithIdentifier:@"Show Searched Object Detail" sender:view.annotation];
     
 }
+
+
+/*
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    POICalloutView *calloutView = [[POICalloutView alloc] initWithFrame:CGRectMake(0.0, 0.0, 280.0, 87.0)];
+    
+    calloutView.annotation = view.annotation;
+    
+    calloutView.center = CGPointMake(CGRectGetWidth(view.bounds) / 2.0, 0.0);
+    [view addSubview:calloutView];
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    for (UIView *subview in view.subviews) {
+        if (![subview isKindOfClass:[POICalloutView class]]) {
+            continue;
+        }
+        
+        [subview removeFromSuperview];
+    }
+}
+*/
 
 #pragma mark - Segue 
 
