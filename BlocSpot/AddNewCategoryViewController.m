@@ -27,11 +27,22 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
     self.saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed)];
     
     self.navigationItem.rightBarButtonItem = self.saveButton;
-    
+    self.title = @"Add Category";
+
     if (self.locationCategory) {
         self.categoryNameTextField.text = [self.locationCategory valueForKey:@"name"];
         self.colorNameTextField.text = [self.locationCategory valueForKey:@"color"];
+        self.title = @"Edit Category";
     }
+    // Background gradient
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = self.view.bounds;
+    gradientLayer.colors = @[(id)[UIColor blackColor].CGColor,
+                             (id)[UIColor colorWithRed:0.561 green:0.839 blue:0.922 alpha:1].CGColor];
+    gradientLayer.cornerRadius = 4;
+    gradientLayer.masksToBounds = YES;
+    [self.view.layer insertSublayer:gradientLayer atIndex:0];
+
 }
 
 - (void)savePressed {

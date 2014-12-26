@@ -31,6 +31,7 @@
     self.pointOfInterest = pointOfInterest;
     self.title = pointOfInterest.name;
     self.subtitle = pointOfInterest.note;
+    self.coordinate = CLLocationCoordinate2DMake([pointOfInterest.latitude doubleValue], [pointOfInterest.longitude doubleValue]);
     return self;
 }
 @end

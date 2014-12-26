@@ -8,6 +8,8 @@
 
 #import "BlocAnnotationView.h"
 #import "CalloutViewController.h"
+#import "SearchResultObjectAnnotation.h"
+#import "LocationCategory+Create.h"
 
 static NSString * const kDefaultImage   = @"pin.jpg";
 
@@ -64,7 +66,13 @@ static NSString * const kDefaultImage   = @"pin.jpg";
 //        roundedRect.lineWidth = 2.0;
 //        [roundedRect fill];
     
-    [[UIColor darkGrayColor] setFill];
+    [[UIColor lightGrayColor] setFill];
+    if ([self.annotation isKindOfClass:[SearchResultObjectAnnotation class]]) {
+        SearchResultObjectAnnotation *object = self.annotation;
+        LocationCategory *lc = object.pointOfInterest.locationCategory;
+        NSString *color = lc ? lc.color : @".4,.4,.4,.4";
+        [[UIColor fromString:color] setFill];
+    }
 
     CGFloat w = self.frame.size.width / 3.1f;
     CGPoint center = CGPointMake(self.frame.size.width / 2.f, self.frame.size.height / 2.f);

@@ -28,7 +28,7 @@
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     
     // adjust the map to zoom/center to the annotations we want to show
-    [self.mapView setRegion:self.boundingRegion];
+//    [self.mapView setRegion:self.boundingRegion];
     
     if (self.searchResultObjectAnnotations.count == 1)
     {
@@ -55,6 +55,7 @@
         {
             [self.mapView addAnnotation:annotation];
         }
+        [self.mapView showAnnotations:self.searchResultObjectAnnotations animated:YES];
     }
 }
 
@@ -86,6 +87,7 @@
             
             // assign the annotation to the annotation view
             annotationView.annotation = annotation;
+            NSLog(@"Coordinates are %f - %f", [annotation coordinate].latitude, [annotation coordinate].longitude);
             
             UIButton *rightCallout = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             annotationView.rightCalloutAccessoryView = rightCallout;

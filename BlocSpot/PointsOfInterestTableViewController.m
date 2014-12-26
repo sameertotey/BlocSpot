@@ -26,7 +26,6 @@
 
 @property (nonatomic, strong) MapViewController *mapViewController;
 
-
 @end
 
 @implementation PointsOfInterestTableViewController
@@ -182,7 +181,7 @@
         cell.object = searchResultObjectAnnotation;
     } else {
         NSIndexPath *newIndex = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section - 1];
-        // Configure the cell to show the book's title
+        // Configure the cell to show the poi's title
         PointOfInterest  *pointOfInterest = [self.fetchedResultsController objectAtIndexPath:newIndex];
         cell.textLabel.text = pointOfInterest.name;
         cell.object = [[SearchResultObjectAnnotation alloc] initWithPointOfInterest:pointOfInterest];
@@ -200,34 +199,37 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    // Display the POIs name as section headings.
+    // Display the LocationCategory name as section headings.
     if (section) {
-//        NSLog(@"section is %ld", (long)section);
         section--;
         return  [[[self.fetchedResultsController sections] objectAtIndex:section] name];
     } else {
         return  @"Search";
     }
-    
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        // Delete the managed object.
-        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        if (indexPath.section == 0) {
+            NSLog(@"Cannot delete search results");
+        } else {
+            NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section - 1];
+            // Delete the managed object.
+            NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+            [context deleteObject:[self.fetchedResultsController objectAtIndexPath:newIndexPath]];
         
-        NSError *error;
-        if (![context save:&error]) {
-            /*
-             Replace this implementation with code to handle the error appropriately.
+            NSError *error;
+            if (![context save:&error]) {
+                /*
+                Replace this implementation with code to handle the error appropriately.
              
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-             */
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+                 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                 */
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                abort();
+            }
         }
     }
 }
@@ -236,20 +238,13 @@
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    if (indexPath.section) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
 /*
 // Override to support rearranging the table view.
@@ -353,7 +348,12 @@
             // pass the new bounding region to the map destination view controller
             self.mapViewController.boundingRegion = self.boundingRegion;
             // pass the places list to the map destination view controller
-            self.mapViewController.searchResultObjectAnnotations = self.places;
+            NSMutableArray *allLocations = [NSMutableArray arrayWithArray:self.places];
+            for (PointOfInterest *poi in [self.fetchedResultsController fetchedObjects]) {
+                [allLocations addObject:[[SearchResultObjectAnnotation alloc] initWithPointOfInterest:poi]];
+            }
+            self.mapViewController.searchResultObjectAnnotations = allLocations;
+            
             // pass the database context
             self.mapViewController.managedObjectContext = self.managedObjectContext;
 
@@ -370,7 +370,6 @@
             sodvc.managedObjectContext  = self.managedObjectContext;
         }
     }
-    
 }
 
 #pragma mark - UISearchBarDelegate

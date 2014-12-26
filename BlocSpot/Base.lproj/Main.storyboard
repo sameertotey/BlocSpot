@@ -204,20 +204,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tnz-Mo-7nT">
-                                <rect key="frame" x="252" y="80" width="97" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tnz-Mo-7nT">
+                                <rect key="frame" x="200" y="124" width="200" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="PA8-fL-y3I"/>
+                                    <constraint firstAttribute="width" constant="200" id="tdK-eZ-SzN"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="OPu-fk-DTP" id="0jv-Zp-DOy"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aAe-g3-oNd">
-                                <rect key="frame" x="252" y="146" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aAe-g3-oNd">
+                                <rect key="frame" x="200" y="190" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="9rf-ET-4aK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="OPu-fk-DTP" id="kbe-ea-qHO"/>
@@ -226,11 +229,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Tnz-Mo-7nT" firstAttribute="trailing" secondItem="aAe-g3-oNd" secondAttribute="trailing" id="1NS-uU-6Qo"/>
-                            <constraint firstItem="Tnz-Mo-7nT" firstAttribute="centerX" secondItem="GGb-al-Ql0" secondAttribute="centerX" id="527-sZ-lvK"/>
-                            <constraint firstItem="aAe-g3-oNd" firstAttribute="top" secondItem="Tnz-Mo-7nT" secondAttribute="bottom" constant="36" id="MTG-gX-xw1"/>
-                            <constraint firstItem="Tnz-Mo-7nT" firstAttribute="top" secondItem="Dtn-3H-Q3I" secondAttribute="bottom" constant="60" id="NRr-nL-5w8"/>
-                            <constraint firstItem="Tnz-Mo-7nT" firstAttribute="leading" secondItem="aAe-g3-oNd" secondAttribute="leading" id="uXe-ev-9hm"/>
+                            <constraint firstItem="Tnz-Mo-7nT" firstAttribute="top" secondItem="Dtn-3H-Q3I" secondAttribute="bottom" constant="60" id="4dr-rc-eaD"/>
+                            <constraint firstItem="aAe-g3-oNd" firstAttribute="leading" secondItem="Tnz-Mo-7nT" secondAttribute="leading" id="Dxi-mO-JVu"/>
+                            <constraint firstItem="aAe-g3-oNd" firstAttribute="top" secondItem="Tnz-Mo-7nT" secondAttribute="bottom" constant="36" id="Enx-lZ-5bf"/>
+                            <constraint firstAttribute="centerX" secondItem="Tnz-Mo-7nT" secondAttribute="centerX" id="RyF-u4-zj7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zfT-5Y-OZM"/>
