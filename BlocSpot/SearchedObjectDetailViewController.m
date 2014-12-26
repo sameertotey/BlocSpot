@@ -11,21 +11,23 @@
 #import "LocationCategory+Create.h"
 #import "AddNewCategoryViewController.h"
 #import "ModalTransitionAnimator.h"
+#import "CategoryListTableViewController.h"
 
 // Segue Id
 static NSString * const kAddLocationCategory       = @"addLocationCategory";
+static NSString * const kListLocationCategory       = @"listLocationCategory";
 static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 
 @interface SearchedObjectDetailViewController () <UIViewControllerTransitioningDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
-@property (weak, nonatomic) IBOutlet UITextField *urlTextField;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *descriptionTextViewHeightConstraint;
 
 @property (strong, nonatomic)UIBarButtonItem *doneButton;
 @property (strong, nonatomic)UIBarButtonItem *cancelButton;
 @property (strong, nonatomic)UIBarButtonItem *saveButton;
+@property (strong, nonatomic)UIBarButtonItem *deleteButton;
 
 @property (strong, nonatomic)PointOfInterest *managedDetailObject;
 @property (weak, nonatomic) IBOutlet UIButton *selectCategoryButton;
@@ -36,35 +38,56 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 - (void)viewDidLoad {
     self.titleTextField.text = self.detailObject.title;
     self.descriptionTextView.text = self.detailObject.subtitle;
-    self.urlTextField.text = [self.detailObject.url absoluteString];
+    NSString *category;
+    self.managedDetailObject = self.detailObject.pointOfInterest;
+
+    if (self.managedDetailObject) {
+        category = self.detailObject.pointOfInterest.locationCategory.name;
+    }
+    if (!category) {
+        category = @"default";
+    }
+    [self.selectCategoryButton setTitle:category forState:UIControlStateNormal];
     
     self.doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneEditing)];
     self.cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelEditing)];
     self.saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed)];
+    self.deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deletePressed)];
     
-    self.navigationItem.rightBarButtonItem = self.saveButton;
-    
-    self.managedDetailObject = self.detailObject.pointOfInterest;
+    [self setNavigationButtons];
+    self.title = @"POI Detail";
+}
+
+- (void)setNavigationButtons {
+    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItems = @[self.deleteButton, self.saveButton];
     
     if (self.managedDetailObject == nil) {
-        self.managedDetailObject = [NSEntityDescription insertNewObjectForEntityForName:@"PointOfInterest" inManagedObjectContext:self.managedObjectContext];
-        // set the latitude and longitude here
-        [self.managedDetailObject setValue:[NSNumber numberWithDouble:self.detailObject.coordinate.latitude] forKey:@"latitude"];
-        [self.managedDetailObject setValue:[NSNumber numberWithDouble:self.detailObject.coordinate.longitude] forKey:@"longitude"];
-        [self.managedDetailObject setValue:self.detailObject.title forKey:@"name"];
-        [self.managedDetailObject setValue:[LocationCategory locationCategoryWithName:@"Default" inManagedObjectContext:self.managedObjectContext] forKey:@"locationCategory"];
+        self.navigationItem.rightBarButtonItems = @[self.saveButton];
     }
 }
 
 - (void)savePressed {
     NSLog(@"Save Pressed");
+    if (self.managedDetailObject == nil) {
+        self.managedDetailObject = [NSEntityDescription insertNewObjectForEntityForName:@"PointOfInterest" inManagedObjectContext:self.managedObjectContext];
+        // set the latitude and longitude here
+        [self.managedDetailObject setValue:[NSNumber numberWithDouble:self.detailObject.coordinate.latitude] forKey:@"latitude"];
+        [self.managedDetailObject setValue:[NSNumber numberWithDouble:self.detailObject.coordinate.longitude] forKey:@"longitude"];
+    }
+    [self.managedDetailObject setValue:self.titleTextField.text forKey:@"name"];
+    [self.managedDetailObject setValue:self.descriptionTextView.text forKey:@"note"];
+    [self.managedDetailObject setValue:[LocationCategory locationCategoryWithName:[self.selectCategoryButton titleForState:UIControlStateNormal] inManagedObjectContext:self.managedObjectContext] forKey:@"locationCategory"];
     [self saveManagedObject];
     [self.navigationController popViewControllerAnimated:YES];
+}
 
+- (void)deletePressed {
+    NSLog(@"Delete Pressed");
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)saveManagedObject {
-    // TODO: save the managed object using core data here
     if ([self.managedObjectContext hasChanges]) {
         NSError *error;
         NSLog(@"Going to save the managed object here.....");
@@ -87,15 +110,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self resignFirstResponder];
     
-    if (textField.tag == 1) {
-        NSLog(@"This is the first field");
-        [self.managedDetailObject setValue:textField.text forKey:@"name"];
-        NSLog(@"The name %@ saved", textField.text);
-    } else {
-        NSLog(@"this is the second field");
-    }
-    // now save the managed object
-
     return YES;
 }
 
@@ -103,15 +117,11 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     // we do not want to erase the existing contents here, but show done and cancel button to end editing
-//    self.descriptionTextView.text = @"";
-    self.descriptionTextView.backgroundColor = [UIColor grayColor];
-    self.navigationItem.leftBarButtonItem = self.cancelButton;
-    self.navigationItem.rightBarButtonItem = self.doneButton;
+    self.navigationItem.rightBarButtonItems = @[self.doneButton];
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    self.navigationItem.leftBarButtonItem = nil;
-    self.navigationItem.rightBarButtonItem = self.saveButton;
+    [self setNavigationButtons];
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
@@ -122,11 +132,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 
 - (void)doneEditing {
     [self.descriptionTextView resignFirstResponder];
-    if (self.descriptionTextView.text.length > 0) {
-        // going for the saving of the contents
-
-        [self.managedDetailObject setValue:self.descriptionTextView.text forKey:@"subtitle"];
-    }
 }
 
 - (void)cancelEditing {
@@ -145,48 +150,52 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 }
 
 - (IBAction)selectCategoryTouched:(id)sender {
-    UIAlertController* actionSheet = [UIAlertController alertControllerWithTitle:@"Select a Category"
-                                                                   message:@"Please select the appropriate category for this POI."
-                                                            preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction* addAction = [UIAlertAction actionWithTitle:@"Add new Category" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {
-                                                              NSLog(@"Add new categoy selected");
-                                                              [self performSegueWithIdentifier:kAddLocationCategory sender:self];
-                                                          }];
-       [actionSheet addAction:addAction];
-    
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"LocationCategory"];
-    
-    NSError *error;
-    NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
-    
-    if ([matches count]) {
-        for (LocationCategory *locationCategory in matches) {
-            UIAlertAction *categoryAction = [UIAlertAction actionWithTitle:locationCategory.name style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                NSLog(@" Action %@ selected", locationCategory.name);
-                self.managedDetailObject.locationCategory = locationCategory;
-                action.enabled = NO;
-            }];
-            [actionSheet addAction:categoryAction];
-        }
-    }
-    
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        NSLog(@"Cancel Selected");
-    }];
-
-    [actionSheet addAction:cancelAction];
-
-    [self presentViewController:actionSheet animated:YES completion:nil];
+//    UIAlertController* actionSheet = [UIAlertController alertControllerWithTitle:@"Select a Category"
+//                                                                   message:@"Please select the appropriate category for this POI."
+//                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+//    
+//    UIAlertAction* addAction = [UIAlertAction actionWithTitle:@"Add new Category" style:UIAlertActionStyleDefault
+//                                                          handler:^(UIAlertAction * action) {
+//                                                              NSLog(@"Add new categoy selected");
+//                                                              [self performSegueWithIdentifier:kAddLocationCategory sender:self];
+//                                                          }];
+//    [actionSheet addAction:addAction];
+//    
+//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"LocationCategory"];
+//    
+//    NSError *error;
+//    NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
+//    
+//    if ([matches count]) {
+//        for (LocationCategory *locationCategory in matches) {
+//            UIAlertAction *categoryAction = [UIAlertAction actionWithTitle:locationCategory.name style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//                NSLog(@" Action %@ selected", locationCategory.name);
+//                self.managedDetailObject.locationCategory = locationCategory;
+//                [self.selectCategoryButton setTitle:locationCategory.name forState:UIControlStateNormal];
+//                action.enabled = NO;
+//            }];
+//            [actionSheet addAction:categoryAction];
+//        }
+//    }
+//    
+//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+//        NSLog(@"Cancel Selected");
+//    }];
+//
+//    [actionSheet addAction:cancelAction];
+//
+//    [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:kAddLocationCategory]) {
+    if ([segue.identifier isEqualToString:kListLocationCategory]) {
         if ([segue.destinationViewController isKindOfClass:[UINavigationController class]] &&
-            [((UINavigationController *)segue.destinationViewController).topViewController isKindOfClass:[AddNewCategoryViewController class]]) {
-            AddNewCategoryViewController *ancvc = (AddNewCategoryViewController *)[(UINavigationController *)segue.destinationViewController topViewController];
-            ancvc.managedObjectContext = self.managedObjectContext;
+            [((UINavigationController *)segue.destinationViewController).topViewController isKindOfClass:[CategoryListTableViewController class]]) {
+            CategoryListTableViewController *cltvc = (CategoryListTableViewController *)[(UINavigationController *)segue.destinationViewController topViewController];
+            if ([sender isKindOfClass:[UIButton class]]) {
+                cltvc.selectedCategory = [(UIButton *)sender titleForState:UIControlStateNormal];
+            }
+            cltvc.managedObjectContext = self.managedObjectContext;
             UIViewController *toVC = segue.destinationViewController;
             toVC.modalPresentationStyle = UIModalPresentationCustom;
             toVC.transitioningDelegate = self;
@@ -207,10 +216,9 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 {
     id<UIViewControllerAnimatedTransitioning> animationController;
     
-    
-    // Add Category
+    // List Category
     if ([presented isKindOfClass:[UINavigationController class]] &&
-        [((UINavigationController *)presented).topViewController isKindOfClass:[AddNewCategoryViewController class]]) {
+        [((UINavigationController *)presented).topViewController isKindOfClass:[CategoryListTableViewController class]]) {
         ModalTransitionAnimator *animator = [[ModalTransitionAnimator alloc] init];
         animator.appearing = YES;
         animator.duration = 1.35;
@@ -227,10 +235,9 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 {
     id<UIViewControllerAnimatedTransitioning> animationController;
     
-    
     // Add Category
     if ([dismissed isKindOfClass:[UINavigationController class]] &&
-        [((UINavigationController *)dismissed).topViewController isKindOfClass:[AddNewCategoryViewController class]]) {
+        [((UINavigationController *)dismissed).topViewController isKindOfClass:[CategoryListTableViewController class]]) {
 
         ModalTransitionAnimator  *animator = [[ModalTransitionAnimator alloc] init];
         animator.appearing = NO;
@@ -244,15 +251,20 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 #pragma mark - Storyboard unwinding
 
 /*
-  Normally an unwind segue will pop/dismiss the view controller but this doesn't happen
+ Normally an unwind segue will pop/dismiss the view controller but this doesn't happen
  for custom modal transitions so we have to manually call dismiss.
  */
-- (IBAction)unwindToAddCategoryViewControllerPresenter:(UIStoryboardSegue *)sender
+- (IBAction)unwindFromListCategoryViewControllerPresenter:(UIStoryboardSegue *)sender
 {
     if ([sender.identifier isEqualToString:kSegueAddCategoryDismiss]) {
+        if ([sender.sourceViewController isKindOfClass:[CategoryListTableViewController class]]) {
+            CategoryListTableViewController *source = (CategoryListTableViewController *)sender.sourceViewController;
+            if (source.selectedCategory) {
+                [self.selectCategoryButton setTitle:source.selectedCategory forState:UIControlStateNormal];
+            }
+        }
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
-
 
 @end

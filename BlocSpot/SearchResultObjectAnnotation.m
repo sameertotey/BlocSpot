@@ -29,6 +29,8 @@
     // initialize the item for annotation with properties from PointOfInterest
     self.mapItem = nil;
     self.pointOfInterest = pointOfInterest;
+    self.title = pointOfInterest.name;
+    self.subtitle = pointOfInterest.note;
     return self;
 }
 @end

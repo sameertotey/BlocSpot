@@ -9,6 +9,8 @@
 #import "PointsOfInterestTableViewController.h"
 #import "MapViewController.h"
 #import "LocationCategory.h"
+#import "SearchedObjectDetailViewController.h"
+#import "POITableViewCell.h"
 
 @interface PointsOfInterestTableViewController ()
 @property (nonatomic, strong) UISearchBar *searchBar;
@@ -139,6 +141,12 @@
     }
 }
 
+#pragma mark - Table view delegate methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSLog(@"Table view did select....");
+}
+
 #pragma mark - Table view data source methods
 
 // The data source methods are handled primarily by the fetch results controller
@@ -165,23 +173,25 @@
 }
 
 // Customize the appearance of table view cells.
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(POITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
     // Configure the cell...
     if (indexPath.section == 0) {
         SearchResultObjectAnnotation *searchResultObjectAnnotation = [self.places objectAtIndex:indexPath.row];
         cell.textLabel.text = searchResultObjectAnnotation.title;
+        cell.object = searchResultObjectAnnotation;
     } else {
         NSIndexPath *newIndex = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section - 1];
         // Configure the cell to show the book's title
         PointOfInterest  *pointOfInterest = [self.fetchedResultsController objectAtIndexPath:newIndex];
         cell.textLabel.text = pointOfInterest.name;
+        cell.object = [[SearchResultObjectAnnotation alloc] initWithPointOfInterest:pointOfInterest];
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Point of interest";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    POITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell.
     [self configureCell:cell atIndexPath:indexPath];
@@ -192,7 +202,7 @@
     
     // Display the POIs name as section headings.
     if (section) {
-        NSLog(@"section is %ld", (long)section);
+//        NSLog(@"section is %ld", (long)section);
         section--;
         return  [[[self.fetchedResultsController sections] objectAtIndex:section] name];
     } else {
@@ -271,12 +281,12 @@
     // let us offset the indexes by 1 section to account for the search results
     if (indexPath) {
         indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section + 1];
-        NSLog(@"The indexpath is %@", indexPath);
+//        NSLog(@"The indexpath is %@", indexPath);
     }
     
     if (newIndexPath) {
         newIndexPath = [NSIndexPath indexPathForRow:newIndexPath.row inSection:newIndexPath.section + 1];
-        NSLog(@"The new indexpath is %@", newIndexPath);
+//        NSLog(@"The new indexpath is %@", newIndexPath);
     }
     
     switch(type) {
@@ -290,7 +300,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:(POITableViewCell *)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
@@ -348,11 +358,17 @@
             self.mapViewController.managedObjectContext = self.managedObjectContext;
 
         }
-    } else if ([segue.identifier isEqualToString:@"Show Point Of Interest"]) {
-            if ([segue.destinationViewController isKindOfClass:[MapViewController class]]) {
-                // We want to hang on the reference to the MapViewController so that it is not dealloced after we return
-                self.mapViewController = [segue destinationViewController];
+    } else if ([segue.identifier isEqualToString:@"Show Searched Object Detail"]) {
+        if ([segue.destinationViewController isKindOfClass:[SearchedObjectDetailViewController class]]) {
+            // setup the detail object as well as pass the database context for saving changes to the object
+            SearchedObjectDetailViewController *sodvc = (SearchedObjectDetailViewController *)segue.destinationViewController;
+            if ([sender isKindOfClass:[POITableViewCell class]]) {
+                sodvc.detailObject = [sender object];
+            } else {
+                NSLog(@"Sender is %@", sender);
             }
+            sodvc.managedObjectContext  = self.managedObjectContext;
+        }
     }
     
 }

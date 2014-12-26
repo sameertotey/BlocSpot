@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		052524CB1A3BD95E00C7F4D4 /* PointOfInterest.m in Sources */ = {isa = PBXBuildFile; fileRef = 052524CA1A3BD95E00C7F4D4 /* PointOfInterest.m */; };
-		052524CE1A3BD95F00C7F4D4 /* LocationCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 052524CD1A3BD95F00C7F4D4 /* LocationCategory.m */; };
+		0549602A1A4B389A0027C184 /* LocationCategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 054960291A4B389A0027C184 /* LocationCategoryTableViewCell.m */; };
+		0549602D1A4B65050027C184 /* UIColor+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549602C1A4B65050027C184 /* UIColor+String.m */; };
 		054989C01A3FD94F00A560C8 /* AddNewCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054989BF1A3FD94F00A560C8 /* AddNewCategoryViewController.m */; };
 		054989C41A41E7BC00A560C8 /* BaseTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 054989C31A41E7BC00A560C8 /* BaseTransitionAnimator.m */; };
 		056D24BB1A30C4EF003BD7DF /* BlocSpot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 056D24B91A30C4EF003BD7DF /* BlocSpot.xcdatamodeld */; };
@@ -27,6 +27,10 @@
 		059E32381A2F7636001822C0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059E32371A2F7636001822C0 /* MapKit.framework */; };
 		05AE23E81A44816D00C8D2BF /* POICalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AE23E71A44816D00C8D2BF /* POICalloutView.m */; };
 		05AE23EB1A45394B00C8D2BF /* CalloutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AE23EA1A45394B00C8D2BF /* CalloutViewController.m */; };
+		05AE241E1A4879B300C8D2BF /* PointOfInterest.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AE241D1A4879B300C8D2BF /* PointOfInterest.m */; };
+		05AE24211A4879B400C8D2BF /* LocationCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AE24201A4879B400C8D2BF /* LocationCategory.m */; };
+		05AE24241A48956800C8D2BF /* POITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AE24231A48956800C8D2BF /* POITableViewCell.m */; };
+		05AE24271A4A1AA800C8D2BF /* CategoryListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AE24261A4A1AA800C8D2BF /* CategoryListTableViewController.m */; };
 		05B3554F1A420F74000B9FE9 /* ModalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B3554E1A420F74000B9FE9 /* ModalTransitionAnimator.m */; };
 		05B355521A436C82000B9FE9 /* BlocAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B355511A436C82000B9FE9 /* BlocAnnotationView.m */; };
 /* End PBXBuildFile section */
@@ -42,10 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		052524C91A3BD95E00C7F4D4 /* PointOfInterest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointOfInterest.h; sourceTree = "<group>"; };
-		052524CA1A3BD95E00C7F4D4 /* PointOfInterest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointOfInterest.m; sourceTree = "<group>"; };
-		052524CC1A3BD95F00C7F4D4 /* LocationCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCategory.h; sourceTree = "<group>"; };
-		052524CD1A3BD95F00C7F4D4 /* LocationCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCategory.m; sourceTree = "<group>"; };
+		054960281A4B389A0027C184 /* LocationCategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCategoryTableViewCell.h; sourceTree = "<group>"; };
+		054960291A4B389A0027C184 /* LocationCategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCategoryTableViewCell.m; sourceTree = "<group>"; };
+		0549602B1A4B65050027C184 /* UIColor+String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+String.h"; sourceTree = "<group>"; };
+		0549602C1A4B65050027C184 /* UIColor+String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+String.m"; sourceTree = "<group>"; };
 		054989BE1A3FD94F00A560C8 /* AddNewCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewCategoryViewController.h; sourceTree = "<group>"; };
 		054989BF1A3FD94F00A560C8 /* AddNewCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewCategoryViewController.m; sourceTree = "<group>"; };
 		054989C21A41E7BC00A560C8 /* BaseTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTransitionAnimator.h; sourceTree = "<group>"; };
@@ -79,6 +83,14 @@
 		05AE23E71A44816D00C8D2BF /* POICalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POICalloutView.m; sourceTree = "<group>"; };
 		05AE23E91A45394B00C8D2BF /* CalloutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalloutViewController.h; sourceTree = "<group>"; };
 		05AE23EA1A45394B00C8D2BF /* CalloutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalloutViewController.m; sourceTree = "<group>"; };
+		05AE241C1A4879B300C8D2BF /* PointOfInterest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PointOfInterest.h; path = ../PointOfInterest.h; sourceTree = "<group>"; };
+		05AE241D1A4879B300C8D2BF /* PointOfInterest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PointOfInterest.m; path = ../PointOfInterest.m; sourceTree = "<group>"; };
+		05AE241F1A4879B400C8D2BF /* LocationCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationCategory.h; path = ../LocationCategory.h; sourceTree = "<group>"; };
+		05AE24201A4879B400C8D2BF /* LocationCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationCategory.m; path = ../LocationCategory.m; sourceTree = "<group>"; };
+		05AE24221A48956800C8D2BF /* POITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POITableViewCell.h; sourceTree = "<group>"; };
+		05AE24231A48956800C8D2BF /* POITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POITableViewCell.m; sourceTree = "<group>"; };
+		05AE24251A4A1AA800C8D2BF /* CategoryListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListTableViewController.h; sourceTree = "<group>"; };
+		05AE24261A4A1AA800C8D2BF /* CategoryListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListTableViewController.m; sourceTree = "<group>"; };
 		05B3554D1A420F74000B9FE9 /* ModalTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalTransitionAnimator.h; sourceTree = "<group>"; };
 		05B3554E1A420F74000B9FE9 /* ModalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalTransitionAnimator.m; sourceTree = "<group>"; };
 		05B355501A436C82000B9FE9 /* BlocAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocAnnotationView.h; sourceTree = "<group>"; };
@@ -143,10 +155,10 @@
 				059E32151A2F757B001822C0 /* AppDelegate.h */,
 				059E32161A2F757B001822C0 /* AppDelegate.m */,
 				056D24B91A30C4EF003BD7DF /* BlocSpot.xcdatamodeld */,
-				052524CC1A3BD95F00C7F4D4 /* LocationCategory.h */,
-				052524CD1A3BD95F00C7F4D4 /* LocationCategory.m */,
-				052524C91A3BD95E00C7F4D4 /* PointOfInterest.h */,
-				052524CA1A3BD95E00C7F4D4 /* PointOfInterest.m */,
+				05AE241F1A4879B400C8D2BF /* LocationCategory.h */,
+				05AE24201A4879B400C8D2BF /* LocationCategory.m */,
+				05AE241C1A4879B300C8D2BF /* PointOfInterest.h */,
+				05AE241D1A4879B300C8D2BF /* PointOfInterest.m */,
 				056D24BF1A3124E5003BD7DF /* MapViewController.h */,
 				056D24C01A3124E5003BD7DF /* MapViewController.m */,
 				05B355501A436C82000B9FE9 /* BlocAnnotationView.h */,
@@ -156,6 +168,14 @@
 				056D24DD1A326A10003BD7DF /* SearchResultObjectAnnotation.h */,
 				056D24DE1A326A10003BD7DF /* SearchResultObjectAnnotation.m */,
 				059E321B1A2F757B001822C0 /* Main.storyboard */,
+				054960281A4B389A0027C184 /* LocationCategoryTableViewCell.h */,
+				054960291A4B389A0027C184 /* LocationCategoryTableViewCell.m */,
+				05AE24251A4A1AA800C8D2BF /* CategoryListTableViewController.h */,
+				05AE24261A4A1AA800C8D2BF /* CategoryListTableViewController.m */,
+				0549602B1A4B65050027C184 /* UIColor+String.h */,
+				0549602C1A4B65050027C184 /* UIColor+String.m */,
+				05AE24221A48956800C8D2BF /* POITableViewCell.h */,
+				05AE24231A48956800C8D2BF /* POITableViewCell.m */,
 				05AE23E61A44816D00C8D2BF /* POICalloutView.h */,
 				05AE23E71A44816D00C8D2BF /* POICalloutView.m */,
 				054989BE1A3FD94F00A560C8 /* AddNewCategoryViewController.h */,
@@ -305,19 +325,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				052524CE1A3BD95F00C7F4D4 /* LocationCategory.m in Sources */,
 				056D24BB1A30C4EF003BD7DF /* BlocSpot.xcdatamodeld in Sources */,
+				05AE24271A4A1AA800C8D2BF /* CategoryListTableViewController.m in Sources */,
 				05AE23E81A44816D00C8D2BF /* POICalloutView.m in Sources */,
 				056D24DF1A326A10003BD7DF /* SearchResultObjectAnnotation.m in Sources */,
 				056D24DC1A325C90003BD7DF /* PointOfInterest+Annotation.m in Sources */,
 				056D24BE1A311C6D003BD7DF /* PointsOfInterestTableViewController.m in Sources */,
 				054989C01A3FD94F00A560C8 /* AddNewCategoryViewController.m in Sources */,
 				059C56271A3C990A00FD7CDF /* LocationCategory+Create.m in Sources */,
+				0549602A1A4B389A0027C184 /* LocationCategoryTableViewCell.m in Sources */,
+				05AE24211A4879B400C8D2BF /* LocationCategory.m in Sources */,
 				05AE23EB1A45394B00C8D2BF /* CalloutViewController.m in Sources */,
 				054989C41A41E7BC00A560C8 /* BaseTransitionAnimator.m in Sources */,
-				052524CB1A3BD95E00C7F4D4 /* PointOfInterest.m in Sources */,
+				05AE241E1A4879B300C8D2BF /* PointOfInterest.m in Sources */,
 				056D24C11A3124E5003BD7DF /* MapViewController.m in Sources */,
+				05AE24241A48956800C8D2BF /* POITableViewCell.m in Sources */,
 				056D24E21A3365D9003BD7DF /* SearchedObjectDetailViewController.m in Sources */,
+				0549602D1A4B65050027C184 /* UIColor+String.m in Sources */,
 				05B355521A436C82000B9FE9 /* BlocAnnotationView.m in Sources */,
 				05B3554F1A420F74000B9FE9 /* ModalTransitionAnimator.m in Sources */,
 				059E32171A2F757B001822C0 /* AppDelegate.m in Sources */,

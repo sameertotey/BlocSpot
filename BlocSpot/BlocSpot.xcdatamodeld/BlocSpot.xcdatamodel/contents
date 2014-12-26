@@ -9,11 +9,12 @@
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="visited" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="locationCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LocationCategory" inverseName="pointsOfInterest" inverseEntity="LocationCategory" syncable="YES"/>
     </entity>
     <elements>
         <element name="LocationCategory" positionX="-524" positionY="-136" width="128" height="88"/>
-        <element name="PointOfInterest" positionX="-801" positionY="-135" width="128" height="118"/>
+        <element name="PointOfInterest" positionX="-801" positionY="-135" width="128" height="135"/>
     </elements>
 </model>

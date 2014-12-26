@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LocationCategory+Create.h"
 
 @interface AddNewCategoryViewController : UIViewController <UITextFieldDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
-
+@property (nonatomic, strong) LocationCategory *locationCategory;
 @end

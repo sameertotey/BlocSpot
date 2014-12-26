@@ -8,7 +8,7 @@
 #import "ModalTransitionAnimator.h"
 
 static CGFloat const kInitialScale = 0.01;
-static CGFloat const kFinalScale = 0.9;
+static CGFloat const kFinalScale = 0.8;
 
 @implementation ModalTransitionAnimator
 

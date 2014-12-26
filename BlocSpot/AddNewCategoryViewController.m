@@ -7,17 +7,16 @@
 //
 
 #import "AddNewCategoryViewController.h"
-#import "LocationCategory+Create.h"
 
 static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 
 @interface AddNewCategoryViewController ()
 
-@property (weak, nonatomic) IBOutlet UITextField *categoryNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *colorNameTextField;
 @property (strong, nonatomic)UIBarButtonItem *doneButton;
 @property (strong, nonatomic)UIBarButtonItem *cancelButton;
 @property (strong, nonatomic)UIBarButtonItem *saveButton;
+@property (weak, nonatomic) IBOutlet UITextField *categoryNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *colorNameTextField;
 
 @end
 
@@ -28,21 +27,29 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
     self.saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed)];
     
     self.navigationItem.rightBarButtonItem = self.saveButton;
-    self.navigationItem.leftBarButtonItem = self.cancelButton;
+    
+    if (self.locationCategory) {
+        self.categoryNameTextField.text = [self.locationCategory valueForKey:@"name"];
+        self.colorNameTextField.text = [self.locationCategory valueForKey:@"color"];
+    }
 }
 
 - (void)savePressed {
     NSLog(@"Save Pressed");
     [self saveManagedObject];
-    [self performSegueWithIdentifier:kSegueAddCategoryDismiss sender:self];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)saveManagedObject {
     NSError *error;
     NSLog(@"Going to save the managed object here.....");
-    LocationCategory *locationCategory = [NSEntityDescription insertNewObjectForEntityForName:@"LocationCategory" inManagedObjectContext:self.managedObjectContext];
-    [locationCategory setValue:self.categoryNameTextField.text forKey:@"name"];
-    [locationCategory setValue:self.colorNameTextField.text forKey:@"color"];
+    if (!self.locationCategory) {
+        // This was an add new location category request
+        self.locationCategory = [NSEntityDescription insertNewObjectForEntityForName:@"LocationCategory" inManagedObjectContext:self.managedObjectContext];
+    }
+    
+    [self.locationCategory setValue:self.categoryNameTextField.text forKey:@"name"];
+    [self.locationCategory setValue:self.colorNameTextField.text forKey:@"color"];
     if (![self.managedObjectContext save:&error]){
         /*
         Replace this implementation with code to handle the error appropriately.
@@ -56,8 +63,7 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 
 
 - (void)cancelEditing {
-//    [self.navigationController popViewControllerAnimated:YES];
-    [self performSegueWithIdentifier:kSegueAddCategoryDismiss sender:self];
+    
 }
 
 #pragma mark - TextFieldDelegate
@@ -72,8 +78,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
     if ([self.categoryNameTextField.text length] && [self.colorNameTextField.text length]) {
         self.saveButton.enabled = YES;
     }
-     // now save the managed object in the save
 }
-
 
 @end

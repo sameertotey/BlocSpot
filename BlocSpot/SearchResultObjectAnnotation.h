@@ -21,5 +21,6 @@
 @property (nonatomic, strong) PointOfInterest *pointOfInterest;
 
 - (instancetype)initWithMapItem:(MKMapItem *)mapItem;
+- (instancetype)initWithPointOfInterest:(PointOfInterest *)pointOfInterest;
 
 @end
