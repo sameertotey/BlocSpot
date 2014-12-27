@@ -27,7 +27,7 @@
             locationCategory = [NSEntityDescription insertNewObjectForEntityForName:@"LocationCategory"
                                                          inManagedObjectContext:context];
             locationCategory.name = name;
-            locationCategory.color = @"UIColorDarkGray";
+            locationCategory.color = @"0.5,0.5,0.5,0.5";
         } else {
             locationCategory = [matches lastObject];
         }

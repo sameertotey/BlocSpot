@@ -32,6 +32,7 @@ static NSString * const kDefaultImage   = @"pin.jpg";
         CGRect calloutFrame = self.calloutViewController.view.frame;
         calloutFrame.size = [self.calloutViewController preferredContentSize];
         self.calloutViewController.view.frame = calloutFrame;
+        self.calloutViewController.annotation = self.annotation;
         
 //        self.centerOffset = CGPointMake(40.0, 40.0);
         // The opaque property is YES by default. Setting it to

@@ -87,14 +87,6 @@
             
             // assign the annotation to the annotation view
             annotationView.annotation = annotation;
-            NSLog(@"Coordinates are %f - %f", [annotation coordinate].latitude, [annotation coordinate].longitude);
-            
-            UIButton *rightCallout = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            annotationView.rightCalloutAccessoryView = rightCallout;
-            
-            UILabel *leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
-            leftLabel.text = @"left hand accessory";
-            annotationView.leftCalloutAccessoryView = leftLabel;
         }
     }
     return annotationView;

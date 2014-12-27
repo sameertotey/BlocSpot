@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchedObjectDetailViewController.h"
 
-@interface CalloutViewController : UIViewController
+@interface CalloutViewController : UIViewController <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) IBOutlet UIButton *visitedButton;
-
+@property (weak, nonatomic) IBOutlet UITextView *noteTextView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *locationCategoryBarButtonItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *navigateBarButtonItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareBarButtonItem;
+@property (nonatomic, strong) SearchResultObjectAnnotation *annotation;
+@property (weak, nonatomic) IBOutlet UIToolbar *callOutToolbar;
 @end
