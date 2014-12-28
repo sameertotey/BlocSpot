@@ -26,6 +26,7 @@
 
 @property (nonatomic, strong) MapViewController *mapViewController;
 
+@property (nonatomic, strong) NSString *searchText;
 @end
 
 @implementation PointsOfInterestTableViewController
@@ -49,6 +50,7 @@
     [self startStandardUpdates];
     
 //    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.searchText = @"";
     
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
@@ -84,6 +86,13 @@
     NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     NSArray *sortDescriptors = @[locationCategoryDescriptor, nameDescriptor];
     [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // Create the predicate
+    NSString *prefix = @"*";
+    NSString *suffix = @"*";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like[c] %@",
+                              [[prefix stringByAppendingString:self.searchText] stringByAppendingString:suffix]];
+    [fetchRequest setPredicate:predicate];
     
     // Create and initialize the fetch results controller.
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"locationCategory.name" cacheName:nil];
@@ -376,6 +385,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 //    NSLog(@"text did change to %@", searchText);
+    self.searchText = searchText;
     //Maybe fire a new search here
 }
 
@@ -441,7 +451,20 @@
             // used for later when setting the map's region in "prepareForSegue"
             self.boundingRegion = response.boundingRegion;
             
-            //self.viewAllButton.enabled = self.places != nil ? YES : NO;
+            //after a successful search, we refetech the core data with the modidied predicate value
+            
+            self.fetchedResultsController = nil;
+            NSError *error;
+            if (![[self fetchedResultsController] performFetch:&error]) {
+                /*
+                 Replace this implementation with code to handle the error appropriately.
+                 
+                 abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                 */
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                abort();
+            }
+
             
             [self.tableView reloadData];
         }
@@ -529,8 +552,6 @@
     // called "stopUpdatingLocation", remove us as the delegate to be sure
     
 }
-
-
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {

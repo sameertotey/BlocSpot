@@ -16,7 +16,6 @@
 @implementation LocationCategoryTableViewCell
 
 - (void)awakeFromNib {
-    NSLog(@"Awake from nib");
     self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressFired:)];
     self.longPressGestureRecognizer.delegate = self;
     [self.contentView addGestureRecognizer:self.longPressGestureRecognizer];

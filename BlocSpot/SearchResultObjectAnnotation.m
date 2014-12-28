@@ -15,6 +15,8 @@
 
 @implementation SearchResultObjectAnnotation
 
+NSString *const kRemovedAnnotation = @"AnnotationRemoved";
+
 - (instancetype)initWithMapItem:(MKMapItem *)mapItem {
     // initialize the item for annotation with properties from MKMapItem
     self.coordinate = mapItem.placemark.location.coordinate;

@@ -57,6 +57,8 @@
         }
         [self.mapView showAnnotations:self.searchResultObjectAnnotations animated:YES];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteAnnotation:) name:kRemovedAnnotation object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -65,6 +67,13 @@
     [self.mapView removeAnnotations:self.mapView.annotations];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)deleteAnnotation:(NSNotification *)notification {
+    [self.mapView removeAnnotation:notification.object];
+}
 
 #pragma mark - MKMapViewDelegate
 

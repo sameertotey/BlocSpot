@@ -23,4 +23,6 @@
 - (instancetype)initWithMapItem:(MKMapItem *)mapItem;
 - (instancetype)initWithPointOfInterest:(PointOfInterest *)pointOfInterest;
 
+extern NSString *const kRemovedAnnotation;
+
 @end

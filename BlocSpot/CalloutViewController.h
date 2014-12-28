@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SearchedObjectDetailViewController.h"
 
-@interface CalloutViewController : UIViewController <UITextViewDelegate>
+@interface CalloutViewController : UIViewController <UITextViewDelegate, UIViewControllerTransitioningDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) IBOutlet UIButton *visitedButton;

@@ -281,6 +281,7 @@
                                     <barButtonItem title="Category" id="REv-Pl-ypd">
                                         <connections>
                                             <action selector="categoryTouched:" destination="UmF-XU-jSE" id="yEj-OZ-vVJ"/>
+                                            <segue destination="Hsu-pd-GYF" kind="presentation" identifier="listLocationCategoryFromMap" id="aSe-Pa-3qx"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem systemItem="trash" id="XKa-4G-umG">
@@ -326,7 +327,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wFx-hI-bLa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1139" y="-147.5"/>
+            <point key="canvasLocation" x="1628" y="636.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="94P-0K-8JE">
@@ -352,6 +353,7 @@
         <image name="navigation" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="aSe-Pa-3qx"/>
         <segue reference="mK0-P2-Mej"/>
     </inferredMetricsTieBreakers>
 </document>
