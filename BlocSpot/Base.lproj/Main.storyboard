@@ -8,14 +8,11 @@
         <!--Navigation Controller-->
         <scene sceneID="tK2-q3-Sre">
             <objects>
-                <navigationController toolbarHidden="NO" id="E58-S2-30C" sceneMemberID="viewController">
+                <navigationController id="E58-S2-30C" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="s1x-7A-mZH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="s9v-V4-9IE">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
                     <connections>
                         <segue destination="Bro-k7-aaL" kind="relationship" relationship="rootViewController" id="U3k-vI-hjf"/>
                     </connections>
@@ -33,11 +30,67 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailPOICell" rowHeight="88" id="Jh3-GC-7Sc" customClass="POIDetailTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="DetailPOICell" rowHeight="88" id="Jh3-GC-7Sc" customClass="POIDetailTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jh3-GC-7Sc" id="sTo-Ek-lJs">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Har-Md-og9" customClass="BlocSpotView">
+                                            <rect key="frame" x="22" y="8" width="40" height="40"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="3l1-QE-d5N"/>
+                                                <constraint firstAttribute="height" constant="40" id="DA3-kE-2MJ"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ibg-8b-MuV">
+                                            <rect key="frame" x="8" y="50" width="68" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="O5L-PQ-9fj"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POI Title" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bh0-f8-ndg">
+                                            <rect key="frame" x="92" y="8" width="457" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="VGh-9m-EHk"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="notes" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aF8-ZU-L3L">
+                                            <rect key="frame" x="92" y="36" width="457" height="44"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="Q7W-2M-roL"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="aF8-ZU-L3L" firstAttribute="leading" secondItem="Har-Md-og9" secondAttribute="trailing" constant="30" id="9Fj-oU-ogi"/>
+                                        <constraint firstItem="aF8-ZU-L3L" firstAttribute="leading" secondItem="Ibg-8b-MuV" secondAttribute="trailing" constant="16" id="GPO-tj-dmg"/>
+                                        <constraint firstItem="bh0-f8-ndg" firstAttribute="leading" secondItem="Har-Md-og9" secondAttribute="trailing" constant="30" id="J5E-Nl-zAt"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="aF8-ZU-L3L" secondAttribute="trailing" constant="10" id="Nmt-kY-ddF"/>
+                                        <constraint firstItem="Har-Md-og9" firstAttribute="top" secondItem="sTo-Ek-lJs" secondAttribute="topMargin" id="R0f-ub-eYa"/>
+                                        <constraint firstItem="bh0-f8-ndg" firstAttribute="top" secondItem="sTo-Ek-lJs" secondAttribute="topMargin" id="fue-yw-D35"/>
+                                        <constraint firstItem="aF8-ZU-L3L" firstAttribute="top" secondItem="bh0-f8-ndg" secondAttribute="bottom" constant="4" id="hN9-rT-CTt"/>
+                                        <constraint firstItem="Ibg-8b-MuV" firstAttribute="leading" secondItem="sTo-Ek-lJs" secondAttribute="leadingMargin" id="kJo-R3-Yks"/>
+                                        <constraint firstItem="Har-Md-og9" firstAttribute="leading" secondItem="sTo-Ek-lJs" secondAttribute="leadingMargin" constant="14" id="kXE-C6-Bgc"/>
+                                        <constraint firstItem="Ibg-8b-MuV" firstAttribute="top" secondItem="Har-Md-og9" secondAttribute="bottom" constant="2" id="q4R-ro-C0r"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="bh0-f8-ndg" secondAttribute="trailing" constant="10" id="qgB-6N-IgQ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="poiBlocSpotView" destination="Har-Md-og9" id="Gd2-Zb-MH5"/>
+                                    <outlet property="poiDistanceLabel" destination="Ibg-8b-MuV" id="gsQ-02-7Be"/>
+                                    <outlet property="poiNotes" destination="aF8-ZU-L3L" id="qKU-8a-ssc"/>
+                                    <outlet property="poiTitle" destination="bh0-f8-ndg" id="6yc-fM-gE9"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -57,6 +110,7 @@
                     <connections>
                         <segue destination="zVl-0D-Qjj" kind="show" identifier="Show Maps ViewController" id="bXm-NV-me7"/>
                         <segue destination="w6k-px-lw2" kind="show" identifier="Show Search ViewController" id="qdt-Dd-BuV"/>
+                        <segue destination="gMg-CG-Oov" kind="show" identifier="BlocSpot Object Detail View Controller" id="oVp-q3-sle"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gog-yg-9DL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -87,14 +141,17 @@
                             <outlet property="delegate" destination="w6k-px-lw2" id="xXZ-GK-L8d"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="Map" id="v40-3Z-dqt">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Nef-bP-it8">
+                        <barButtonItem key="rightBarButtonItem" image="map" id="Y5Q-K2-TY5">
                             <connections>
-                                <segue destination="zVl-0D-Qjj" kind="show" identifier="Show All Points of Interest" id="m0b-VI-W44"/>
+                                <segue destination="zVl-0D-Qjj" kind="show" identifier="Show All Points of Interest" id="L9f-9k-IWe"/>
                             </connections>
                         </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" id="Nef-bP-it8"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="rightBarButtonItem" destination="Y5Q-K2-TY5" id="7ET-G8-0jJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ML-8F-YCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -395,8 +452,8 @@
         <image name="navigation" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="m0b-VI-W44"/>
+        <segue reference="bXm-NV-me7"/>
+        <segue reference="oVp-q3-sle"/>
         <segue reference="Okp-oT-yev"/>
-        <segue reference="mK0-P2-Mej"/>
     </inferredMetricsTieBreakers>
 </document>

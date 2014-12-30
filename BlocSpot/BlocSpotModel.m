@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Sameer Totey. All rights reserved.
 //
 
-#import "SearchResultObjectAnnotation.h"
+#import "BlocSpotModel.h"
 
-@interface SearchResultObjectAnnotation ()
+@interface BlocSpotModel ()
 @property(nonatomic, readwrite, copy) NSString *title;
 @property(nonatomic, readwrite, copy) NSString *subtitle;
 @end
 
-@implementation SearchResultObjectAnnotation
+@implementation BlocSpotModel
 
 NSString *const kRemovedAnnotation = @"AnnotationRemoved";
 NSString *const kAddRegionMonitoringForAnnotation = @"MonitorRegionForThisAnnotation";

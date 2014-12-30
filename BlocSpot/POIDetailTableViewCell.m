@@ -10,4 +10,10 @@
 
 @implementation POIDetailTableViewCell
 
+- (void)setObject:(BlocSpotModel *)object {
+    [super setObject:object];
+    self.poiBlocSpotView.object = object;
+    [self setNeedsDisplay];
+}
+
 @end

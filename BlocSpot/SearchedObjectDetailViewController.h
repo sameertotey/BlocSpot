@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SearchResultObjectAnnotation.h"
+#import "BlocSpotModel.h"
 
 @interface SearchedObjectDetailViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong)SearchResultObjectAnnotation *detailObject;
+@property (nonatomic, strong)BlocSpotModel *detailObject;
 
 @end

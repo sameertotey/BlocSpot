@@ -10,7 +10,7 @@
 #import "MapViewController.h"
 #import "LocationCategory.h"
 #import "SearchedObjectDetailViewController.h"
-#import "POITableViewCell.h"
+#import "POIDetailTableViewCell.h"
 #import "CategoryListTableViewController.h"
 #import "ModalTransitionAnimator.h"
 #import "SearchTableViewController.h"
@@ -19,6 +19,7 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 static NSString * const kShowMapsViewController    = @"Show Maps ViewController";
 static NSString * const kShowSearchViewController  = @"Show Search ViewController";
 static NSString * const kPresentCategoryFilter     = @"Select Category Filter";
+static NSString * const kShowObjectDetail          = @"BlocSpot Object Detail View Controller";
 
 @interface PointsOfInterestTableViewController () <UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) UIBarButtonItem *rightBarButtonItem;
@@ -143,23 +144,25 @@ static NSString * const kPresentCategoryFilter     = @"Select Category Filter";
 #pragma mark - Table view delegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    NSLog(@"Table view did select....");
+    NSLog(@"Table view did select....");
+    [self performSegueWithIdentifier:kShowObjectDetail sender:[tableView cellForRowAtIndexPath:indexPath]];
 }
 
 #pragma mark - Table view data source methods
 
 // Customize the appearance of table view cells.
-- (void)configureCell:(POITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(POIDetailTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
     // Configure the cell to show the poi's title
     PointOfInterest  *pointOfInterest = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = pointOfInterest.name;
-    cell.object = [[SearchResultObjectAnnotation alloc] initWithPointOfInterest:pointOfInterest];
+    cell.poiTitle.text = pointOfInterest.name;
+    cell.poiNotes.text = pointOfInterest.note;
+    cell.object = [[BlocSpotModel alloc] initWithPointOfInterest:pointOfInterest];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"DetailPOICell";
-    POITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    POIDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell.
     [self configureCell:cell atIndexPath:indexPath];
@@ -204,7 +207,7 @@ static NSString * const kPresentCategoryFilter     = @"Select Category Filter";
             
             NSMutableArray *allLocations = [NSMutableArray array];
             for (PointOfInterest *poi in [self.fetchedResultsController fetchedObjects]) {
-                [allLocations addObject:[[SearchResultObjectAnnotation alloc] initWithPointOfInterest:poi]];
+                [allLocations addObject:[[BlocSpotModel alloc] initWithPointOfInterest:poi]];
             }
             mapvc.searchResultObjectAnnotations = allLocations;
 
@@ -219,7 +222,7 @@ static NSString * const kPresentCategoryFilter     = @"Select Category Filter";
             searchtvc.managedObjectContext = self.managedObjectContext;
         }
 
-    } else if ([segue.identifier isEqualToString:@"Show Searched Object Detail"]) {
+    } else if ([segue.identifier isEqualToString:kShowObjectDetail]) {
         if ([segue.destinationViewController isKindOfClass:[SearchedObjectDetailViewController class]]) {
             // setup the detail object as well as pass the database context for saving changes to the object
             SearchedObjectDetailViewController *sodvc = (SearchedObjectDetailViewController *)segue.destinationViewController;

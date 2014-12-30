@@ -119,7 +119,7 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
     
 }
 
-- (void) setAnnotation:(SearchResultObjectAnnotation *)annotation {
+- (void) setAnnotation:(BlocSpotModel *)annotation {
     _annotation = annotation;
     if (self.annotation.pointOfInterest) {
         self.titleLabel.text = self.annotation.pointOfInterest.name;

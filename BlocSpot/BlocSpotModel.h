@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "PointOfInterest+Annotation.h"
 
-@interface SearchResultObjectAnnotation : NSObject <MKAnnotation>
+@interface BlocSpotModel : NSObject <MKAnnotation>
 
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 @property(nonatomic, readonly, copy) NSString *title;

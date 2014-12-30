@@ -22,7 +22,7 @@
 @property (nonatomic) CLLocationCoordinate2D userLocation;
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, strong) UIBarButtonItem *rightBarButtonItem;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *rightBarButtonItem;
 
 @property (nonatomic, strong) MapViewController *mapViewController;
 
@@ -44,12 +44,11 @@
     self.searchBar = [[UISearchBar alloc] init];
     self.searchBar.delegate = self;
     self.navigationItem.titleView = self.searchBar;
-    //    self.navigationItem.rightBarButtonItems = nil;
+    self.navigationItem.rightBarButtonItems = @[self.rightBarButtonItem];
     
     // start by locating user's current position
     [self startStandardUpdates];
     
-    //    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     self.searchText = @"";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(monitorAnnotationRegion:) name:kAddRegionMonitoringForAnnotation object:nil];
@@ -64,7 +63,6 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
 }
 
 - (void) dealloc {
@@ -72,8 +70,8 @@
 }
 
 - (void)monitorAnnotationRegion:(NSNotification *)annotation {
-    SearchResultObjectAnnotation *annotationObject;
-    if ([annotation.object isKindOfClass:[SearchResultObjectAnnotation class]]) {
+    BlocSpotModel *annotationObject;
+    if ([annotation.object isKindOfClass:[BlocSpotModel class]]) {
         annotationObject = annotation.object;
     }
     
@@ -87,6 +85,10 @@
         }
     }
     
+}
+
+- (void)mapSelected {
+    NSLog(@"map selected");
 }
 
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error  {
@@ -243,7 +245,7 @@
     
     // Configure the cell...
     if (indexPath.section == 0) {
-        SearchResultObjectAnnotation *searchResultObjectAnnotation = [self.places objectAtIndex:indexPath.row];
+        BlocSpotModel *searchResultObjectAnnotation = [self.places objectAtIndex:indexPath.row];
         cell.textLabel.text = searchResultObjectAnnotation.title;
         cell.object = searchResultObjectAnnotation;
     } else {
@@ -251,7 +253,7 @@
         // Configure the cell to show the poi's title
         PointOfInterest  *pointOfInterest = [self.fetchedResultsController objectAtIndexPath:newIndex];
         cell.textLabel.text = pointOfInterest.name;
-        cell.object = [[SearchResultObjectAnnotation alloc] initWithPointOfInterest:pointOfInterest];
+        cell.object = [[BlocSpotModel alloc] initWithPointOfInterest:pointOfInterest];
     }
 }
 
@@ -417,7 +419,7 @@
             // pass the places list to the map destination view controller
             NSMutableArray *allLocations = [NSMutableArray arrayWithArray:self.places];
             for (PointOfInterest *poi in [self.fetchedResultsController fetchedObjects]) {
-                [allLocations addObject:[[SearchResultObjectAnnotation alloc] initWithPointOfInterest:poi]];
+                [allLocations addObject:[[BlocSpotModel alloc] initWithPointOfInterest:poi]];
             }
             self.mapViewController.searchResultObjectAnnotations = allLocations;
             
@@ -542,7 +544,7 @@
 - (void) loadPlacesFromResponse:(NSArray *)response {
     NSMutableArray *responseArray = [NSMutableArray array];
     for (MKMapItem *mapItem in response) {
-        [responseArray addObject:[[SearchResultObjectAnnotation alloc] initWithMapItem:mapItem]];
+        [responseArray addObject:[[BlocSpotModel alloc] initWithMapItem:mapItem]];
     }
     self.places = responseArray;
 }

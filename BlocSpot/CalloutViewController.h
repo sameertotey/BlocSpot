@@ -18,6 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *navigateBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareBarButtonItem;
-@property (nonatomic, strong) SearchResultObjectAnnotation *annotation;
+@property (nonatomic, strong) BlocSpotModel *annotation;
 @property (weak, nonatomic) IBOutlet UIToolbar *callOutToolbar;
 @end

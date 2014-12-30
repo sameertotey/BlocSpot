@@ -8,7 +8,7 @@
 
 #import "BlocAnnotationView.h"
 #import "CalloutViewController.h"
-#import "SearchResultObjectAnnotation.h"
+#import "BlocSpotModel.h"
 #import "LocationCategory+Create.h"
 
 static NSString * const kDefaultImage   = @"pin.jpg";
@@ -68,8 +68,11 @@ static NSString * const kDefaultImage   = @"pin.jpg";
 //        [roundedRect fill];
     
     [[UIColor lightGrayColor] setFill];
-    if ([self.annotation isKindOfClass:[SearchResultObjectAnnotation class]]) {
-        SearchResultObjectAnnotation *object = self.annotation;
+
+    BlocSpotModel *object;
+
+    if ([self.annotation isKindOfClass:[BlocSpotModel class]]) {
+        object = self.annotation;
         LocationCategory *lc = object.pointOfInterest.locationCategory;
         NSString *color = lc ? lc.color : @".4,.4,.4,.4";
         [[UIColor fromString:color] setFill];
@@ -88,6 +91,16 @@ static NSString * const kDefaultImage   = @"pin.jpg";
     [path addLineToPoint:CGPointMake(center.x + w, center.y)];
     
     [path fill];
+    
+    if (object.pointOfInterest.visited) {
+        [path moveToPoint:CGPointMake(15., 25.)];
+        [path addLineToPoint:CGPointMake(18., 30.)];
+        [path addLineToPoint:CGPointMake(30.,5.)];
+        path.lineWidth = 3.0;
+        [[UIColor whiteColor] setStroke];
+        [path stroke];
+    }
+    
 }
 
 - (CGFloat)toRadians:(CGFloat)angle

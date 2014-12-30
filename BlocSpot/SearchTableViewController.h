@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
-#import "SearchResultObjectAnnotation.h"
+#import "BlocSpotModel.h"
 
 
 @interface SearchTableViewController : UITableViewController <UISearchBarDelegate, CLLocationManagerDelegate, NSFetchedResultsControllerDelegate>

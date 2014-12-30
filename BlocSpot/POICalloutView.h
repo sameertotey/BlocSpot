@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SearchResultObjectAnnotation.h"
+#import "BlocSpotModel.h"
 
 @interface POICalloutView : UIView
-@property(nonatomic, strong) SearchResultObjectAnnotation *annotation;
+@property(nonatomic, strong) BlocSpotModel *annotation;
 @end

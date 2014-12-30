@@ -8,7 +8,7 @@
 
 #import "MapViewController.h"
 #import "PointOfInterest+Annotation.h"
-#import "SearchResultObjectAnnotation.h"
+#import "BlocSpotModel.h"
 #import "SearchedObjectDetailViewController.h"
 #import "BlocAnnotationView.h"
 #import "POICalloutView.h"
@@ -16,7 +16,7 @@
 
 @interface MapViewController ()
 @property (nonatomic, weak) IBOutlet MKMapView *mapView;
-@property (nonatomic, strong) SearchResultObjectAnnotation *annotation;
+@property (nonatomic, strong) BlocSpotModel *annotation;
 @end
 
 @implementation MapViewController
@@ -32,7 +32,7 @@
     
     if (self.searchResultObjectAnnotations.count == 1)
     {
-        SearchResultObjectAnnotation *searchResultObjectAnnotation = [self.searchResultObjectAnnotations objectAtIndex:0];
+        BlocSpotModel *searchResultObjectAnnotation = [self.searchResultObjectAnnotations objectAtIndex:0];
         
         self.title = searchResultObjectAnnotation.mapItem.name;
         
@@ -51,7 +51,7 @@
         self.title = @"All Places";
         
         // add all the found annotations to the map
-        for (SearchResultObjectAnnotation *annotation in self.searchResultObjectAnnotations)
+        for (BlocSpotModel *annotation in self.searchResultObjectAnnotations)
         {
             [self.mapView addAnnotation:annotation];
         }
@@ -84,7 +84,7 @@
         return nil;
     
     MKAnnotationView *annotationView = nil;
-    if ([annotation isKindOfClass:[SearchResultObjectAnnotation class]])
+    if ([annotation isKindOfClass:[BlocSpotModel class]])
     {
         annotationView = (BlocAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:@"Heart"];
         if (annotationView == nil)
@@ -135,11 +135,11 @@ calloutAccessoryControlTapped:(UIControl *)control {
 #pragma mark - Segue 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([sender isKindOfClass:[SearchResultObjectAnnotation class]]) {
+    if ([sender isKindOfClass:[BlocSpotModel class]]) {
         if ([segue.destinationViewController isKindOfClass:[SearchedObjectDetailViewController class]]) {
             // setup the detail object as well as pass the database context for saving changes to the object
             SearchedObjectDetailViewController *sodvc = (SearchedObjectDetailViewController *)segue.destinationViewController;
-            if ([sender isKindOfClass:[SearchResultObjectAnnotation class]]) {
+            if ([sender isKindOfClass:[BlocSpotModel class]]) {
                 sodvc.detailObject = sender;
             }
             sodvc.managedObjectContext  = self.managedObjectContext;

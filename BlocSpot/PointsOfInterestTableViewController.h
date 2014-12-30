@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SearchResultObjectAnnotation.h"
+#import "BlocSpotModel.h"
 #import "CoreDataTableViewController.h"
 
 

@@ -14,11 +14,12 @@
 		054A1A6F1A51F400001730BE /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A1A6E1A51F400001730BE /* SearchTableViewController.m */; };
 		054A1A721A51F673001730BE /* POIDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A1A711A51F673001730BE /* POIDetailTableViewCell.m */; };
 		054A1A791A524B2C001730BE /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A1A751A524B2C001730BE /* CoreDataTableViewController.m */; };
+		054A1A7D1A5322AF001730BE /* BlocSpotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A1A7C1A5322AF001730BE /* BlocSpotView.m */; };
 		056D24BB1A30C4EF003BD7DF /* BlocSpot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 056D24B91A30C4EF003BD7DF /* BlocSpot.xcdatamodeld */; };
 		056D24BE1A311C6D003BD7DF /* PointsOfInterestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24BD1A311C6D003BD7DF /* PointsOfInterestTableViewController.m */; };
 		056D24C11A3124E5003BD7DF /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24C01A3124E5003BD7DF /* MapViewController.m */; };
 		056D24DC1A325C90003BD7DF /* PointOfInterest+Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24DB1A325C90003BD7DF /* PointOfInterest+Annotation.m */; };
-		056D24DF1A326A10003BD7DF /* SearchResultObjectAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24DE1A326A10003BD7DF /* SearchResultObjectAnnotation.m */; };
+		056D24DF1A326A10003BD7DF /* BlocSpotModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24DE1A326A10003BD7DF /* BlocSpotModel.m */; };
 		056D24E21A3365D9003BD7DF /* SearchedObjectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24E11A3365D9003BD7DF /* SearchedObjectDetailViewController.m */; };
 		059C56271A3C990A00FD7CDF /* LocationCategory+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 059C56261A3C990A00FD7CDF /* LocationCategory+Create.m */; };
 		059E32141A2F757B001822C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 059E32131A2F757B001822C0 /* main.m */; };
@@ -63,6 +64,8 @@
 		054A1A711A51F673001730BE /* POIDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POIDetailTableViewCell.m; sourceTree = "<group>"; };
 		054A1A741A524B2C001730BE /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		054A1A751A524B2C001730BE /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		054A1A7B1A5322AF001730BE /* BlocSpotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocSpotView.h; sourceTree = "<group>"; };
+		054A1A7C1A5322AF001730BE /* BlocSpotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocSpotView.m; sourceTree = "<group>"; };
 		056D24BA1A30C4EF003BD7DF /* BlocSpot.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BlocSpot.xcdatamodel; sourceTree = "<group>"; };
 		056D24BC1A311C6D003BD7DF /* PointsOfInterestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsOfInterestTableViewController.h; sourceTree = "<group>"; };
 		056D24BD1A311C6D003BD7DF /* PointsOfInterestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsOfInterestTableViewController.m; sourceTree = "<group>"; };
@@ -70,8 +73,8 @@
 		056D24C01A3124E5003BD7DF /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		056D24DA1A325C90003BD7DF /* PointOfInterest+Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PointOfInterest+Annotation.h"; sourceTree = "<group>"; };
 		056D24DB1A325C90003BD7DF /* PointOfInterest+Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PointOfInterest+Annotation.m"; sourceTree = "<group>"; };
-		056D24DD1A326A10003BD7DF /* SearchResultObjectAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultObjectAnnotation.h; sourceTree = "<group>"; };
-		056D24DE1A326A10003BD7DF /* SearchResultObjectAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultObjectAnnotation.m; sourceTree = "<group>"; };
+		056D24DD1A326A10003BD7DF /* BlocSpotModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocSpotModel.h; sourceTree = "<group>"; };
+		056D24DE1A326A10003BD7DF /* BlocSpotModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocSpotModel.m; sourceTree = "<group>"; };
 		056D24E01A3365D9003BD7DF /* SearchedObjectDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchedObjectDetailViewController.h; sourceTree = "<group>"; };
 		056D24E11A3365D9003BD7DF /* SearchedObjectDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchedObjectDetailViewController.m; sourceTree = "<group>"; };
 		059C56251A3C990A00FD7CDF /* LocationCategory+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LocationCategory+Create.h"; sourceTree = "<group>"; };
@@ -145,6 +148,15 @@
 			path = CoreDataTableViewController;
 			sourceTree = "<group>";
 		};
+		054A1A7E1A5322BB001730BE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				054A1A7B1A5322AF001730BE /* BlocSpotView.h */,
+				054A1A7C1A5322AF001730BE /* BlocSpotView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		059E32051A2F757A001822C0 = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +179,7 @@
 		059E32101A2F757B001822C0 /* BlocSpot */ = {
 			isa = PBXGroup;
 			children = (
+				054A1A7E1A5322BB001730BE /* Views */,
 				054A1A731A524B2C001730BE /* CoreDataTableViewController */,
 				054989C11A41E78C00A560C8 /* Animators */,
 				056D24DA1A325C90003BD7DF /* PointOfInterest+Annotation.h */,
@@ -184,8 +197,8 @@
 				05B355511A436C82000B9FE9 /* BlocAnnotationView.m */,
 				05AE23E91A45394B00C8D2BF /* CalloutViewController.h */,
 				05AE23EA1A45394B00C8D2BF /* CalloutViewController.m */,
-				056D24DD1A326A10003BD7DF /* SearchResultObjectAnnotation.h */,
-				056D24DE1A326A10003BD7DF /* SearchResultObjectAnnotation.m */,
+				056D24DD1A326A10003BD7DF /* BlocSpotModel.h */,
+				056D24DE1A326A10003BD7DF /* BlocSpotModel.m */,
 				059E321B1A2F757B001822C0 /* Main.storyboard */,
 				054A1A701A51F673001730BE /* POIDetailTableViewCell.h */,
 				054A1A711A51F673001730BE /* POIDetailTableViewCell.m */,
@@ -293,6 +306,9 @@
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = 6QHDV6JE6P;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
@@ -352,13 +368,14 @@
 				05AE24271A4A1AA800C8D2BF /* CategoryListTableViewController.m in Sources */,
 				054A1A791A524B2C001730BE /* CoreDataTableViewController.m in Sources */,
 				05AE23E81A44816D00C8D2BF /* POICalloutView.m in Sources */,
-				056D24DF1A326A10003BD7DF /* SearchResultObjectAnnotation.m in Sources */,
+				056D24DF1A326A10003BD7DF /* BlocSpotModel.m in Sources */,
 				056D24DC1A325C90003BD7DF /* PointOfInterest+Annotation.m in Sources */,
 				054A1A721A51F673001730BE /* POIDetailTableViewCell.m in Sources */,
 				056D24BE1A311C6D003BD7DF /* PointsOfInterestTableViewController.m in Sources */,
 				054989C01A3FD94F00A560C8 /* AddNewCategoryViewController.m in Sources */,
 				059C56271A3C990A00FD7CDF /* LocationCategory+Create.m in Sources */,
 				0549602A1A4B389A0027C184 /* LocationCategoryTableViewCell.m in Sources */,
+				054A1A7D1A5322AF001730BE /* BlocSpotView.m in Sources */,
 				05AE24211A4879B400C8D2BF /* LocationCategory.m in Sources */,
 				05AE23EB1A45394B00C8D2BF /* CalloutViewController.m in Sources */,
 				054989C41A41E7BC00A560C8 /* BaseTransitionAnimator.m in Sources */,

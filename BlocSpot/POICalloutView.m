@@ -119,7 +119,7 @@
 
 #pragma mark - properties
 
-- (void)setAnnotation:(SearchResultObjectAnnotation *)annotation {
+- (void)setAnnotation:(BlocSpotModel *)annotation {
     _annotation = annotation;
     if (_annotation) {
         self.titleLabel.text = _annotation.title;

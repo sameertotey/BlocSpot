@@ -7,7 +7,12 @@
 //
 
 #import "POITableViewCell.h"
+#import "BlocSpotView.h"
 
 @interface POIDetailTableViewCell : POITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *poiTitle;
+@property (weak, nonatomic) IBOutlet UITextView *poiNotes;
+@property (weak, nonatomic) IBOutlet BlocSpotView *poiBlocSpotView;
+@property (weak, nonatomic) IBOutlet UILabel *poiDistanceLabel;
 
 @end
