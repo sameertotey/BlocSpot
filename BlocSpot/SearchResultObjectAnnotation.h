@@ -24,5 +24,6 @@
 - (instancetype)initWithPointOfInterest:(PointOfInterest *)pointOfInterest;
 
 extern NSString *const kRemovedAnnotation;
+extern NSString *const kAddRegionMonitoringForAnnotation;
 
 @end

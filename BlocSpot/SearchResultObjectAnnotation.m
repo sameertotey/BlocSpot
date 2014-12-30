@@ -16,6 +16,7 @@
 @implementation SearchResultObjectAnnotation
 
 NSString *const kRemovedAnnotation = @"AnnotationRemoved";
+NSString *const kAddRegionMonitoringForAnnotation = @"MonitorRegionForThisAnnotation";
 
 - (instancetype)initWithMapItem:(MKMapItem *)mapItem {
     // initialize the item for annotation with properties from MKMapItem

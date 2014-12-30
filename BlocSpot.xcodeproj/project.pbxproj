@@ -11,6 +11,9 @@
 		0549602D1A4B65050027C184 /* UIColor+String.m in Sources */ = {isa = PBXBuildFile; fileRef = 0549602C1A4B65050027C184 /* UIColor+String.m */; };
 		054989C01A3FD94F00A560C8 /* AddNewCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054989BF1A3FD94F00A560C8 /* AddNewCategoryViewController.m */; };
 		054989C41A41E7BC00A560C8 /* BaseTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 054989C31A41E7BC00A560C8 /* BaseTransitionAnimator.m */; };
+		054A1A6F1A51F400001730BE /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A1A6E1A51F400001730BE /* SearchTableViewController.m */; };
+		054A1A721A51F673001730BE /* POIDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A1A711A51F673001730BE /* POIDetailTableViewCell.m */; };
+		054A1A791A524B2C001730BE /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A1A751A524B2C001730BE /* CoreDataTableViewController.m */; };
 		056D24BB1A30C4EF003BD7DF /* BlocSpot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 056D24B91A30C4EF003BD7DF /* BlocSpot.xcdatamodeld */; };
 		056D24BE1A311C6D003BD7DF /* PointsOfInterestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24BD1A311C6D003BD7DF /* PointsOfInterestTableViewController.m */; };
 		056D24C11A3124E5003BD7DF /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24C01A3124E5003BD7DF /* MapViewController.m */; };
@@ -54,6 +57,12 @@
 		054989BF1A3FD94F00A560C8 /* AddNewCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewCategoryViewController.m; sourceTree = "<group>"; };
 		054989C21A41E7BC00A560C8 /* BaseTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTransitionAnimator.h; sourceTree = "<group>"; };
 		054989C31A41E7BC00A560C8 /* BaseTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTransitionAnimator.m; sourceTree = "<group>"; };
+		054A1A6D1A51F400001730BE /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
+		054A1A6E1A51F400001730BE /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
+		054A1A701A51F673001730BE /* POIDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POIDetailTableViewCell.h; sourceTree = "<group>"; };
+		054A1A711A51F673001730BE /* POIDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POIDetailTableViewCell.m; sourceTree = "<group>"; };
+		054A1A741A524B2C001730BE /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		054A1A751A524B2C001730BE /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		056D24BA1A30C4EF003BD7DF /* BlocSpot.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BlocSpot.xcdatamodel; sourceTree = "<group>"; };
 		056D24BC1A311C6D003BD7DF /* PointsOfInterestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsOfInterestTableViewController.h; sourceTree = "<group>"; };
 		056D24BD1A311C6D003BD7DF /* PointsOfInterestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsOfInterestTableViewController.m; sourceTree = "<group>"; };
@@ -127,6 +136,15 @@
 			name = Animators;
 			sourceTree = "<group>";
 		};
+		054A1A731A524B2C001730BE /* CoreDataTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				054A1A741A524B2C001730BE /* CoreDataTableViewController.h */,
+				054A1A751A524B2C001730BE /* CoreDataTableViewController.m */,
+			);
+			path = CoreDataTableViewController;
+			sourceTree = "<group>";
+		};
 		059E32051A2F757A001822C0 = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +167,7 @@
 		059E32101A2F757B001822C0 /* BlocSpot */ = {
 			isa = PBXGroup;
 			children = (
+				054A1A731A524B2C001730BE /* CoreDataTableViewController */,
 				054989C11A41E78C00A560C8 /* Animators */,
 				056D24DA1A325C90003BD7DF /* PointOfInterest+Annotation.h */,
 				056D24DB1A325C90003BD7DF /* PointOfInterest+Annotation.m */,
@@ -168,6 +187,10 @@
 				056D24DD1A326A10003BD7DF /* SearchResultObjectAnnotation.h */,
 				056D24DE1A326A10003BD7DF /* SearchResultObjectAnnotation.m */,
 				059E321B1A2F757B001822C0 /* Main.storyboard */,
+				054A1A701A51F673001730BE /* POIDetailTableViewCell.h */,
+				054A1A711A51F673001730BE /* POIDetailTableViewCell.m */,
+				054A1A6D1A51F400001730BE /* SearchTableViewController.h */,
+				054A1A6E1A51F400001730BE /* SearchTableViewController.m */,
 				054960281A4B389A0027C184 /* LocationCategoryTableViewCell.h */,
 				054960291A4B389A0027C184 /* LocationCategoryTableViewCell.m */,
 				05AE24251A4A1AA800C8D2BF /* CategoryListTableViewController.h */,
@@ -327,9 +350,11 @@
 			files = (
 				056D24BB1A30C4EF003BD7DF /* BlocSpot.xcdatamodeld in Sources */,
 				05AE24271A4A1AA800C8D2BF /* CategoryListTableViewController.m in Sources */,
+				054A1A791A524B2C001730BE /* CoreDataTableViewController.m in Sources */,
 				05AE23E81A44816D00C8D2BF /* POICalloutView.m in Sources */,
 				056D24DF1A326A10003BD7DF /* SearchResultObjectAnnotation.m in Sources */,
 				056D24DC1A325C90003BD7DF /* PointOfInterest+Annotation.m in Sources */,
+				054A1A721A51F673001730BE /* POIDetailTableViewCell.m in Sources */,
 				056D24BE1A311C6D003BD7DF /* PointsOfInterestTableViewController.m in Sources */,
 				054989C01A3FD94F00A560C8 /* AddNewCategoryViewController.m in Sources */,
 				059C56271A3C990A00FD7CDF /* LocationCategory+Create.m in Sources */,
@@ -346,6 +371,7 @@
 				05B3554F1A420F74000B9FE9 /* ModalTransitionAnimator.m in Sources */,
 				059E32171A2F757B001822C0 /* AppDelegate.m in Sources */,
 				059E32141A2F757B001822C0 /* main.m in Sources */,
+				054A1A6F1A51F400001730BE /* SearchTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

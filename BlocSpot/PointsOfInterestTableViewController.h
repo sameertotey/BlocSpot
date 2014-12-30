@@ -7,16 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
 #import "SearchResultObjectAnnotation.h"
+#import "CoreDataTableViewController.h"
 
 
-@interface PointsOfInterestTableViewController : UITableViewController <UISearchBarDelegate, CLLocationManagerDelegate, NSFetchedResultsControllerDelegate>
+@interface PointsOfInterestTableViewController : CoreDataTableViewController <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-
-@property (nonatomic, strong) NSArray *places;  //of SearchResultObjectAnnotation
 
 
 @end

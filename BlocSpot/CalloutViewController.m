@@ -41,6 +41,13 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
         }
     }
 
+    // We will also setup the region monitoring for this POI
+    [self setupRegionMonitoring];
+    
+}
+
+- (void)setupRegionMonitoring {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAddRegionMonitoringForAnnotation object:self.annotation];
 }
 
 - (IBAction)categoryTouched:(UIBarButtonItem *)sender {
@@ -87,7 +94,29 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 }
 
 - (IBAction)shareTouched:(UIBarButtonItem *)sender {
-    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"sms:"]];
+    
+        UIAlertController* actionSheet = [UIAlertController alertControllerWithTitle:@"Select a App to share"
+                                                                       message:@"Please select the appropriate app to share this POI."
+                                                                preferredStyle:UIAlertControllerStyleActionSheet];
+    
+        UIAlertAction* addAction = [UIAlertAction actionWithTitle:@"Message" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {
+                                                                  NSLog(@"Messaging selected");
+                                                                  if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"sms:"]]) {
+                                                                      [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"sms:"]];
+                                                                  }
+                                                              }];
+        [actionSheet addAction:addAction];
+    
+    
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            NSLog(@"Cancel Selected");
+        }];
+    
+        [actionSheet addAction:cancelAction];
+    
+        [self presentViewController:actionSheet animated:YES completion:nil];
+    
 }
 
 - (void) setAnnotation:(SearchResultObjectAnnotation *)annotation {

@@ -41,7 +41,7 @@
         self.textLabel.text = object.name;
         self.contentView.backgroundColor = [UIColor fromString:object.color];
         self.accessoryView.backgroundColor = [UIColor fromString:object.color];
-        self.accessoryButton.backgroundColor = [UIColor fromString:[self.object valueForKey:@"color"]];
+        self.accessoryButton.backgroundColor = [UIColor fromString:object.color];
     }
     [self setNeedsDisplay];
 }

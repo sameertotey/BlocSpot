@@ -150,41 +150,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 }
 
 - (IBAction)selectCategoryTouched:(id)sender {
-//    UIAlertController* actionSheet = [UIAlertController alertControllerWithTitle:@"Select a Category"
-//                                                                   message:@"Please select the appropriate category for this POI."
-//                                                            preferredStyle:UIAlertControllerStyleActionSheet];
-//    
-//    UIAlertAction* addAction = [UIAlertAction actionWithTitle:@"Add new Category" style:UIAlertActionStyleDefault
-//                                                          handler:^(UIAlertAction * action) {
-//                                                              NSLog(@"Add new categoy selected");
-//                                                              [self performSegueWithIdentifier:kAddLocationCategory sender:self];
-//                                                          }];
-//    [actionSheet addAction:addAction];
-//    
-//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"LocationCategory"];
-//    
-//    NSError *error;
-//    NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
-//    
-//    if ([matches count]) {
-//        for (LocationCategory *locationCategory in matches) {
-//            UIAlertAction *categoryAction = [UIAlertAction actionWithTitle:locationCategory.name style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//                NSLog(@" Action %@ selected", locationCategory.name);
-//                self.managedDetailObject.locationCategory = locationCategory;
-//                [self.selectCategoryButton setTitle:locationCategory.name forState:UIControlStateNormal];
-//                action.enabled = NO;
-//            }];
-//            [actionSheet addAction:categoryAction];
-//        }
-//    }
-//    
-//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-//        NSLog(@"Cancel Selected");
-//    }];
-//
-//    [actionSheet addAction:cancelAction];
-//
-//    [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

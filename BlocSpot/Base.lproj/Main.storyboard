@@ -17,17 +17,56 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="w6k-px-lw2" kind="relationship" relationship="rootViewController" id="c53-0o-qrl"/>
+                        <segue destination="Bro-k7-aaL" kind="relationship" relationship="rootViewController" id="U3k-vI-hjf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHG-xr-j4p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-262" y="399"/>
+            <point key="canvasLocation" x="-310" y="1159"/>
         </scene>
-        <!--Points of Interest-->
+        <!--Points Of Interest-->
+        <scene sceneID="Fjy-NU-29z">
+            <objects>
+                <tableViewController title="Points Of Interest" id="Bro-k7-aaL" customClass="PointsOfInterestTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="IxG-a4-Sb5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailPOICell" rowHeight="88" id="Jh3-GC-7Sc" customClass="POIDetailTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jh3-GC-7Sc" id="sTo-Ek-lJs">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Bro-k7-aaL" id="by9-9r-mXK"/>
+                            <outlet property="delegate" destination="Bro-k7-aaL" id="Rgi-Sj-iHG"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="POI LIst" id="RhS-q3-V3g">
+                        <barButtonItem key="leftBarButtonItem" image="map" id="NMl-82-tp0"/>
+                        <barButtonItem key="rightBarButtonItem" image="filter" id="SnU-QI-aty">
+                            <connections>
+                                <segue destination="Hsu-pd-GYF" kind="presentation" identifier="Select Category Filter" id="Okp-oT-yev"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="zVl-0D-Qjj" kind="show" identifier="Show Maps ViewController" id="bXm-NV-me7"/>
+                        <segue destination="w6k-px-lw2" kind="show" identifier="Show Search ViewController" id="qdt-Dd-BuV"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gog-yg-9DL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="457" y="1159"/>
+        </scene>
+        <!--Search Points of Interest-->
         <scene sceneID="mwx-Fj-XYh">
             <objects>
-                <tableViewController title="Points of Interest" id="w6k-px-lw2" customClass="PointsOfInterestTableViewController" sceneMemberID="viewController">
+                <tableViewController title="Search Points of Interest" id="w6k-px-lw2" customClass="SearchTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kBt-JW-mA4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,6 +124,7 @@
                     <connections>
                         <outlet property="mapView" destination="i23-tD-mtp" id="o63-Aw-oeZ"/>
                         <segue destination="gMg-CG-Oov" kind="show" identifier="Show Searched Object Detail" id="M4C-Nf-JBi"/>
+                        <segue destination="UmF-XU-jSE" kind="show" identifier="Show Callout" id="Puu-aL-nOE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XKi-LA-RWr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -247,10 +287,10 @@
             </objects>
             <point key="canvasLocation" x="2556" y="1834"/>
         </scene>
-        <!--Title-->
+        <!--Callout View-->
         <scene sceneID="5PN-4y-hWj">
             <objects>
-                <viewController storyboardIdentifier="callout" id="UmF-XU-jSE" customClass="CalloutViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="callout" title="Callout View" id="UmF-XU-jSE" customClass="CalloutViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="p4i-Tx-nun"/>
                         <viewControllerLayoutGuide type="bottom" id="hca-fG-tJo"/>
@@ -349,11 +389,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="filter" width="25" height="25"/>
         <image name="heart-empty" width="28" height="27"/>
+        <image name="map" width="25" height="25"/>
         <image name="navigation" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aSe-Pa-3qx"/>
+        <segue reference="m0b-VI-W44"/>
+        <segue reference="Okp-oT-yev"/>
         <segue reference="mK0-P2-Mej"/>
     </inferredMetricsTieBreakers>
 </document>
