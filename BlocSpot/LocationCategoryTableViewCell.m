@@ -19,11 +19,14 @@
     self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressFired:)];
     self.longPressGestureRecognizer.delegate = self;
     [self.contentView addGestureRecognizer:self.longPressGestureRecognizer];
-    
+
     self.accessoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.accessoryButton.frame = CGRectMake(0, 0, 40, 40);
-    [self.accessoryButton addTarget:self action:@selector(selectionToggled) forControlEvents:UIControlEventTouchUpInside];
+    //    CGFloat height = CGRectGetHeight(self.contentView.bounds);
+    CGFloat height = 43.5;
+    self.accessoryButton.frame = CGRectMake(0, 0, height, height);
+     [self.accessoryButton addTarget:self action:@selector(selectionToggled) forControlEvents:UIControlEventTouchUpInside];
 }
+
 
 - (void)longPressFired:(UIGestureRecognizer *)gesture {
     NSLog(@"Long press fired for %@", self.object);

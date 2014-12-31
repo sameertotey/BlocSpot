@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "LocationCategory+Create.h"
 #import "LocationCategoryTableViewCell.h"
+#import "CoreDataTableViewController.h"
 
-@interface CategoryListTableViewController : UITableViewController <NSFetchedResultsControllerDelegate, LocationCategoryTableViewCellDelegate>
+@interface CategoryListTableViewController : CoreDataTableViewController <LocationCategoryTableViewCellDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSString *selectedCategory;
 @end
