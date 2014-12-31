@@ -11,11 +11,10 @@
 #import "BlocSpotModel.h"
 
 
-@interface SearchTableViewController : UITableViewController <UISearchBarDelegate, CLLocationManagerDelegate, NSFetchedResultsControllerDelegate>
+@interface SearchTableViewController : UITableViewController <UISearchBarDelegate, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, strong) NSArray *places;  //of SearchResultObjectAnnotation
-
 
 @end

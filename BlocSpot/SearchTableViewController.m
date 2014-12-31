@@ -11,6 +11,7 @@
 #import "LocationCategory.h"
 #import "SearchedObjectDetailViewController.h"
 #import "POITableViewCell.h"
+#import "UserLocation.h"
 
 @interface SearchTableViewController ()
 @property (nonatomic, strong) UISearchBar *searchBar;
@@ -18,8 +19,6 @@
 @property (nonatomic, assign) MKCoordinateRegion boundingRegion;
 
 @property (nonatomic, strong) MKLocalSearch *localSearch;
-@property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic) CLLocationCoordinate2D userLocation;
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *rightBarButtonItem;
@@ -27,6 +26,8 @@
 @property (nonatomic, strong) MapViewController *mapViewController;
 
 @property (nonatomic, strong) NSString *searchText;
+
+@property (nonatomic, strong) UserLocation *userLocation;
 @end
 
 @implementation SearchTableViewController
@@ -45,14 +46,9 @@
     self.searchBar.delegate = self;
     self.navigationItem.titleView = self.searchBar;
     self.navigationItem.rightBarButtonItems = @[self.rightBarButtonItem];
-    
-    // start by locating user's current position
-    [self startStandardUpdates];
-    
+    self.userLocation = [UserLocation sharedInstance];
     self.searchText = @"";
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(monitorAnnotationRegion:) name:kAddRegionMonitoringForAnnotation object:nil];
-    
+        
     NSError *error;
     if (![[self fetchedResultsController] performFetch:&error]) {
         /*
@@ -63,62 +59,6 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-}
-
-- (void) dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)monitorAnnotationRegion:(NSNotification *)annotation {
-    BlocSpotModel *annotationObject;
-    if ([annotation.object isKindOfClass:[BlocSpotModel class]]) {
-        annotationObject = annotation.object;
-    }
-    
-    // we will set the radius to 250
-    CLCircularRegion *geoRegion = [[CLCircularRegion alloc] initWithCenter:annotationObject.coordinate radius:250 identifier:annotationObject.title];
-    if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
-        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways) {
-            // Create the geographic region to be monitored.
-            [self.locationManager startMonitoringForRegion:geoRegion];
-            NSLog(@"Started monitoring %@", geoRegion);
-        }
-    }
-    
-}
-
-- (void)mapSelected {
-    NSLog(@"map selected");
-}
-
-- (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error  {
-    NSLog(@"Location manager monitoring failed for region %@ with %@ error", region, error);
-}
-
-- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
-{
-    
-    NSLog(@"Entered Region");
-    
-    if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive) {
-        UILocalNotification *reminder = [[UILocalNotification alloc] init];
-        [reminder setFireDate:[NSDate date]];
-        [reminder setTimeZone:[NSTimeZone localTimeZone]];
-        [reminder setHasAction:YES];
-        [reminder setAlertAction:@"Show"];
-        [reminder setSoundName:@"bell.mp3"];
-        [reminder setAlertBody:@"Boundary crossed!"];
-        [[UIApplication sharedApplication] scheduleLocalNotification:reminder];
-    } else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // Show an alert or otherwise notify the user
-        });
-    }
-}
-
-- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
-{
-    
 }
 
 #pragma mark - Fetched results controller
@@ -155,31 +95,6 @@
     _fetchedResultsController.delegate = self;
     
     return _fetchedResultsController;
-}
-
-- (CLLocationManager *)locationManager {
-    if (!_locationManager) {
-        // Create the location manager if this object does not
-        // already have one.
-        _locationManager = [[CLLocationManager alloc] init];
-    }
-    return _locationManager;
-}
-
-- (void)startStandardUpdates
-{
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-    
-    // Set a movement threshold for new events.
-    self.locationManager.distanceFilter = 500; // meters
-    
-    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
-    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
-        [self.locationManager requestAlwaysAuthorization];
-    }
-    
-    [self.locationManager startUpdatingLocation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -476,8 +391,8 @@
     
     // confine the map search area to the user's current location
     MKCoordinateRegion newRegion;
-    newRegion.center.latitude = self.userLocation.latitude;
-    newRegion.center.longitude = self.userLocation.longitude;
+    newRegion.center.latitude = self.userLocation.location.coordinate.latitude;
+    newRegion.center.longitude = self.userLocation.location.coordinate.longitude;
     
     // setup the area spanned by the map region:
     // we use the delta values to indicate the desired zoom level of the map,
@@ -585,38 +500,6 @@
                                                               otherButtonTitles:nil];
         [servicesDisabledAlert show];
     }
-}
-
-
-#pragma mark - CLLocationManagerDelegate methods
-
-// Delegate method from the CLLocationManagerDelegate protocol.
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    // If it's a relatively recent event, turn off updates to save power.
-    CLLocation* location = [locations lastObject];
-    NSDate* eventDate = location.timestamp;
-    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-    if (abs(howRecent) < 15.0) {
-        // If the event is recent, save it as userLocation.
-        NSLog(@"latitude %+.6f, longitude %+.6f\n",
-              location.coordinate.latitude,
-              location.coordinate.longitude);
-        self.userLocation = location.coordinate;
-    }
-    
-    // We need to continue receiving the location updates
-    
-    //    [manager stopUpdatingLocation]; // we only want one update
-    
-    //    manager.delegate = nil;         // we might be called again here, even though we
-    // called "stopUpdatingLocation", remove us as the delegate to be sure
-    
-}
-
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
-    // report any errors returned back from Location Services
-    NSLog(@"Location Manager did fail with error %@", error);
 }
 
 @end

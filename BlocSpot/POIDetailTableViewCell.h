@@ -14,5 +14,5 @@
 @property (weak, nonatomic) IBOutlet UITextView *poiNotes;
 @property (weak, nonatomic) IBOutlet BlocSpotView *poiBlocSpotView;
 @property (weak, nonatomic) IBOutlet UILabel *poiDistanceLabel;
-
+@property (nonatomic, assign) CLLocationDistance poiDistance;
 @end

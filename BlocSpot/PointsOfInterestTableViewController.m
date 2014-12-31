@@ -14,6 +14,7 @@
 #import "CategoryListTableViewController.h"
 #import "ModalTransitionAnimator.h"
 #import "SearchTableViewController.h"
+#import "UserLocation.h"
 
 static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 static NSString * const kShowMapsViewController    = @"Show Maps ViewController";
@@ -29,6 +30,8 @@ static NSString * const kShowObjectDetail          = @"BlocSpot Object Detail Vi
 @property (nonatomic, strong) UIBarButtonItem *mapButton;
 @property (nonatomic, strong) UIBarButtonItem *searchButton;
 @property (nonatomic, strong) UIBarButtonItem *filterButton;
+
+@property (nonatomic, strong) UserLocation *userLocation;
 
 @end
 
@@ -58,6 +61,8 @@ static NSString * const kShowObjectDetail          = @"BlocSpot Object Detail Vi
     self.navigationItem.leftBarButtonItems = @[self.mapButton, self.searchButton];
     self.navigationItem.rightBarButtonItems = @[self.filterButton];
     [self setupFetchedResultsController];
+    self.userLocation = [UserLocation sharedInstance];
+    
     NSError *error;
     if (![self.fetchedResultsController performFetch:&error]) {
         /*
@@ -158,6 +163,10 @@ static NSString * const kShowObjectDetail          = @"BlocSpot Object Detail Vi
     cell.poiTitle.text = pointOfInterest.name;
     cell.poiNotes.text = pointOfInterest.note;
     cell.object = [[BlocSpotModel alloc] initWithPointOfInterest:pointOfInterest];
+    CLLocation *poiLocation = [[CLLocation alloc] initWithLatitude:[pointOfInterest.latitude doubleValue] longitude:[pointOfInterest.longitude doubleValue]];
+    CLLocationDistance distance = [poiLocation distanceFromLocation:self.userLocation.location];
+    NSString *distanceText = [NSString stringWithFormat:@"%.1f mi", distance * 0.000621371];
+    cell.poiDistanceLabel.text = distanceText;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

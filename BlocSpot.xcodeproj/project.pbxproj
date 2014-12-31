@@ -15,6 +15,7 @@
 		054A1A721A51F673001730BE /* POIDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A1A711A51F673001730BE /* POIDetailTableViewCell.m */; };
 		054A1A791A524B2C001730BE /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A1A751A524B2C001730BE /* CoreDataTableViewController.m */; };
 		054A1A7D1A5322AF001730BE /* BlocSpotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A1A7C1A5322AF001730BE /* BlocSpotView.m */; };
+		054A1A831A539D8D001730BE /* UserLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A1A821A539D8D001730BE /* UserLocation.m */; };
 		056D24BB1A30C4EF003BD7DF /* BlocSpot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 056D24B91A30C4EF003BD7DF /* BlocSpot.xcdatamodeld */; };
 		056D24BE1A311C6D003BD7DF /* PointsOfInterestTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24BD1A311C6D003BD7DF /* PointsOfInterestTableViewController.m */; };
 		056D24C11A3124E5003BD7DF /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 056D24C01A3124E5003BD7DF /* MapViewController.m */; };
@@ -66,6 +67,8 @@
 		054A1A751A524B2C001730BE /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		054A1A7B1A5322AF001730BE /* BlocSpotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlocSpotView.h; sourceTree = "<group>"; };
 		054A1A7C1A5322AF001730BE /* BlocSpotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlocSpotView.m; sourceTree = "<group>"; };
+		054A1A811A539D8D001730BE /* UserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocation.h; sourceTree = "<group>"; };
+		054A1A821A539D8D001730BE /* UserLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocation.m; sourceTree = "<group>"; };
 		056D24BA1A30C4EF003BD7DF /* BlocSpot.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BlocSpot.xcdatamodel; sourceTree = "<group>"; };
 		056D24BC1A311C6D003BD7DF /* PointsOfInterestTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointsOfInterestTableViewController.h; sourceTree = "<group>"; };
 		056D24BD1A311C6D003BD7DF /* PointsOfInterestTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointsOfInterestTableViewController.m; sourceTree = "<group>"; };
@@ -153,8 +156,59 @@
 			children = (
 				054A1A7B1A5322AF001730BE /* BlocSpotView.h */,
 				054A1A7C1A5322AF001730BE /* BlocSpotView.m */,
+				05B355501A436C82000B9FE9 /* BlocAnnotationView.h */,
+				05B355511A436C82000B9FE9 /* BlocAnnotationView.m */,
+				054A1A701A51F673001730BE /* POIDetailTableViewCell.h */,
+				054A1A711A51F673001730BE /* POIDetailTableViewCell.m */,
+				05AE24221A48956800C8D2BF /* POITableViewCell.h */,
+				05AE24231A48956800C8D2BF /* POITableViewCell.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		054A1A7F1A539D46001730BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				056D24B91A30C4EF003BD7DF /* BlocSpot.xcdatamodeld */,
+				05AE241F1A4879B400C8D2BF /* LocationCategory.h */,
+				05AE24201A4879B400C8D2BF /* LocationCategory.m */,
+				059C56251A3C990A00FD7CDF /* LocationCategory+Create.h */,
+				059C56261A3C990A00FD7CDF /* LocationCategory+Create.m */,
+				05AE241C1A4879B300C8D2BF /* PointOfInterest.h */,
+				05AE241D1A4879B300C8D2BF /* PointOfInterest.m */,
+				056D24DA1A325C90003BD7DF /* PointOfInterest+Annotation.h */,
+				056D24DB1A325C90003BD7DF /* PointOfInterest+Annotation.m */,
+				056D24DD1A326A10003BD7DF /* BlocSpotModel.h */,
+				056D24DE1A326A10003BD7DF /* BlocSpotModel.m */,
+				054A1A811A539D8D001730BE /* UserLocation.h */,
+				054A1A821A539D8D001730BE /* UserLocation.m */,
+				0549602B1A4B65050027C184 /* UIColor+String.h */,
+				0549602C1A4B65050027C184 /* UIColor+String.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		054A1A801A539D53001730BE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				056D24BF1A3124E5003BD7DF /* MapViewController.h */,
+				056D24C01A3124E5003BD7DF /* MapViewController.m */,
+				054A1A6D1A51F400001730BE /* SearchTableViewController.h */,
+				054A1A6E1A51F400001730BE /* SearchTableViewController.m */,
+				054960281A4B389A0027C184 /* LocationCategoryTableViewCell.h */,
+				054960291A4B389A0027C184 /* LocationCategoryTableViewCell.m */,
+				05AE24251A4A1AA800C8D2BF /* CategoryListTableViewController.h */,
+				05AE24261A4A1AA800C8D2BF /* CategoryListTableViewController.m */,
+				054989BE1A3FD94F00A560C8 /* AddNewCategoryViewController.h */,
+				054989BF1A3FD94F00A560C8 /* AddNewCategoryViewController.m */,
+				056D24E01A3365D9003BD7DF /* SearchedObjectDetailViewController.h */,
+				056D24E11A3365D9003BD7DF /* SearchedObjectDetailViewController.m */,
+				056D24BC1A311C6D003BD7DF /* PointsOfInterestTableViewController.h */,
+				056D24BD1A311C6D003BD7DF /* PointsOfInterestTableViewController.m */,
+				05AE23E91A45394B00C8D2BF /* CalloutViewController.h */,
+				05AE23EA1A45394B00C8D2BF /* CalloutViewController.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		059E32051A2F757A001822C0 = {
@@ -179,49 +233,16 @@
 		059E32101A2F757B001822C0 /* BlocSpot */ = {
 			isa = PBXGroup;
 			children = (
+				054A1A801A539D53001730BE /* ViewControllers */,
+				054A1A7F1A539D46001730BE /* Model */,
 				054A1A7E1A5322BB001730BE /* Views */,
 				054A1A731A524B2C001730BE /* CoreDataTableViewController */,
 				054989C11A41E78C00A560C8 /* Animators */,
-				056D24DA1A325C90003BD7DF /* PointOfInterest+Annotation.h */,
-				056D24DB1A325C90003BD7DF /* PointOfInterest+Annotation.m */,
 				059E32151A2F757B001822C0 /* AppDelegate.h */,
 				059E32161A2F757B001822C0 /* AppDelegate.m */,
-				056D24B91A30C4EF003BD7DF /* BlocSpot.xcdatamodeld */,
-				05AE241F1A4879B400C8D2BF /* LocationCategory.h */,
-				05AE24201A4879B400C8D2BF /* LocationCategory.m */,
-				05AE241C1A4879B300C8D2BF /* PointOfInterest.h */,
-				05AE241D1A4879B300C8D2BF /* PointOfInterest.m */,
-				056D24BF1A3124E5003BD7DF /* MapViewController.h */,
-				056D24C01A3124E5003BD7DF /* MapViewController.m */,
-				05B355501A436C82000B9FE9 /* BlocAnnotationView.h */,
-				05B355511A436C82000B9FE9 /* BlocAnnotationView.m */,
-				05AE23E91A45394B00C8D2BF /* CalloutViewController.h */,
-				05AE23EA1A45394B00C8D2BF /* CalloutViewController.m */,
-				056D24DD1A326A10003BD7DF /* BlocSpotModel.h */,
-				056D24DE1A326A10003BD7DF /* BlocSpotModel.m */,
 				059E321B1A2F757B001822C0 /* Main.storyboard */,
-				054A1A701A51F673001730BE /* POIDetailTableViewCell.h */,
-				054A1A711A51F673001730BE /* POIDetailTableViewCell.m */,
-				054A1A6D1A51F400001730BE /* SearchTableViewController.h */,
-				054A1A6E1A51F400001730BE /* SearchTableViewController.m */,
-				054960281A4B389A0027C184 /* LocationCategoryTableViewCell.h */,
-				054960291A4B389A0027C184 /* LocationCategoryTableViewCell.m */,
-				05AE24251A4A1AA800C8D2BF /* CategoryListTableViewController.h */,
-				05AE24261A4A1AA800C8D2BF /* CategoryListTableViewController.m */,
-				0549602B1A4B65050027C184 /* UIColor+String.h */,
-				0549602C1A4B65050027C184 /* UIColor+String.m */,
-				05AE24221A48956800C8D2BF /* POITableViewCell.h */,
-				05AE24231A48956800C8D2BF /* POITableViewCell.m */,
 				05AE23E61A44816D00C8D2BF /* POICalloutView.h */,
 				05AE23E71A44816D00C8D2BF /* POICalloutView.m */,
-				054989BE1A3FD94F00A560C8 /* AddNewCategoryViewController.h */,
-				054989BF1A3FD94F00A560C8 /* AddNewCategoryViewController.m */,
-				056D24E01A3365D9003BD7DF /* SearchedObjectDetailViewController.h */,
-				056D24E11A3365D9003BD7DF /* SearchedObjectDetailViewController.m */,
-				059C56251A3C990A00FD7CDF /* LocationCategory+Create.h */,
-				059C56261A3C990A00FD7CDF /* LocationCategory+Create.m */,
-				056D24BC1A311C6D003BD7DF /* PointsOfInterestTableViewController.h */,
-				056D24BD1A311C6D003BD7DF /* PointsOfInterestTableViewController.m */,
 				059E321E1A2F757B001822C0 /* Images.xcassets */,
 				059E32201A2F757B001822C0 /* LaunchScreen.xib */,
 				059E32111A2F757B001822C0 /* Supporting Files */,
@@ -377,6 +398,7 @@
 				0549602A1A4B389A0027C184 /* LocationCategoryTableViewCell.m in Sources */,
 				054A1A7D1A5322AF001730BE /* BlocSpotView.m in Sources */,
 				05AE24211A4879B400C8D2BF /* LocationCategory.m in Sources */,
+				054A1A831A539D8D001730BE /* UserLocation.m in Sources */,
 				05AE23EB1A45394B00C8D2BF /* CalloutViewController.m in Sources */,
 				054989C41A41E7BC00A560C8 /* BaseTransitionAnimator.m in Sources */,
 				05AE241E1A4879B300C8D2BF /* PointOfInterest.m in Sources */,
