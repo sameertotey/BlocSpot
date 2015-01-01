@@ -16,7 +16,7 @@
 @property(nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
 @property (nonatomic, retain) NSURL *url;
-
+@property (nonatomic, assign) CLLocationDistance currentDistanceFromUser;
 @property (nonatomic, strong) MKMapItem *mapItem;
 @property (nonatomic, strong) PointOfInterest *pointOfInterest;
 
@@ -25,5 +25,6 @@
 
 extern NSString *const kRemovedAnnotation;
 extern NSString *const kAddRegionMonitoringForAnnotation;
+extern NSString *const kUpdatedBlocSpotModel;
 
 @end

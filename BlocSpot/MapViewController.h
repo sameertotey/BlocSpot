@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 
 @interface MapViewController : UIViewController
-@property (nonatomic, strong) NSArray *searchResultObjectAnnotations;           // of SearchResultObjectAnnotation
+@property (nonatomic, strong) NSArray *blocSpotObjects;           // of BlocSpotModel
 @property (nonatomic, assign) MKCoordinateRegion boundingRegion;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 

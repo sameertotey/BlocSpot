@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "PointsOfInterestTableViewController.h"
+#import "AllPointsOfInterest.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +22,7 @@
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     PointsOfInterestTableViewController *rootViewController = (PointsOfInterestTableViewController *)[[navigationController viewControllers] objectAtIndex:0];
     rootViewController.managedObjectContext = self.managedObjectContext;
-
+    AllPointsOfInterest *allPointsOfInterest = [AllPointsOfInterest sharedInstanceWithContext:self.managedObjectContext];
     return YES;
 }
 

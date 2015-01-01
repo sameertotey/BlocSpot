@@ -9,6 +9,7 @@
         <scene sceneID="tK2-q3-Sre">
             <objects>
                 <navigationController id="E58-S2-30C" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="s1x-7A-mZH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -166,11 +167,11 @@
                         <viewControllerLayoutGuide type="bottom" id="4pH-74-EUG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZTM-e7-i0L">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i23-tD-mtp">
-                                <rect key="frame" x="0.0" y="12" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
                                     <outlet property="delegate" destination="zVl-0D-Qjj" id="Z5h-Xn-zdD"/>
                                 </connections>
@@ -178,6 +179,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
                         <outlet property="mapView" destination="i23-tD-mtp" id="o63-Aw-oeZ"/>
                         <segue destination="gMg-CG-Oov" kind="show" identifier="Show Searched Object Detail" id="M4C-Nf-JBi"/>
@@ -209,7 +211,7 @@
                                 </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qag-EK-wZw">
-                                <rect key="frame" x="36" y="134" width="528" height="128"/>
+                                <rect key="frame" x="36" y="134" width="528" height="172"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -220,7 +222,7 @@
                                 </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFG-Bl-qqQ">
-                                <rect key="frame" x="36" y="339" width="528" height="30"/>
+                                <rect key="frame" x="36" y="383" width="528" height="30"/>
                                 <state key="normal" title="Category">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -546,8 +548,8 @@
         <image name="navigation" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bXm-NV-me7"/>
-        <segue reference="oVp-q3-sle"/>
         <segue reference="Okp-oT-yev"/>
+        <segue reference="bXm-NV-me7"/>
+        <segue reference="M4C-Nf-JBi"/>
     </inferredMetricsTieBreakers>
 </document>

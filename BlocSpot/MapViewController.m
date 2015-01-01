@@ -11,7 +11,6 @@
 #import "BlocSpotModel.h"
 #import "SearchedObjectDetailViewController.h"
 #import "BlocAnnotationView.h"
-#import "POICalloutView.h"
 
 
 @interface MapViewController ()
@@ -30,32 +29,31 @@
     // adjust the map to zoom/center to the annotations we want to show
 //    [self.mapView setRegion:self.boundingRegion];
     
-    if (self.searchResultObjectAnnotations.count == 1)
+    if (self.blocSpotObjects.count == 1)
     {
-        BlocSpotModel *searchResultObjectAnnotation = [self.searchResultObjectAnnotations objectAtIndex:0];
+        BlocSpotModel *blocSpotObject = [self.blocSpotObjects objectAtIndex:0];
         
-        self.title = searchResultObjectAnnotation.mapItem.name;
+        self.title = blocSpotObject.mapItem.name;
         
         // add the single annotation to our map
-//        SearchResultObjectAnnotation *annotation = [[SearchResultObjectAnnotation alloc] initWithMapItem:mapItem];
-              [self.mapView addAnnotation:searchResultObjectAnnotation];
+        [self.mapView addAnnotation:blocSpotObject];
         
         // we have only one annotation, select it's callout
         [self.mapView selectAnnotation:[self.mapView.annotations objectAtIndex:0] animated:YES];
         
         // center the region around this map item's coordinate
-        self.mapView.centerCoordinate = searchResultObjectAnnotation.mapItem.placemark.coordinate;
+        self.mapView.centerCoordinate = blocSpotObject.mapItem.placemark.coordinate;
     }
     else
     {
         self.title = @"All Places";
         
         // add all the found annotations to the map
-        for (BlocSpotModel *annotation in self.searchResultObjectAnnotations)
+        for (BlocSpotModel *annotation in self.blocSpotObjects)
         {
             [self.mapView addAnnotation:annotation];
         }
-        [self.mapView showAnnotations:self.searchResultObjectAnnotations animated:YES];
+        [self.mapView showAnnotations:self.blocSpotObjects animated:YES];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteAnnotation:) name:kRemovedAnnotation object:nil];
@@ -110,7 +108,6 @@ calloutAccessoryControlTapped:(UIControl *)control {
     
 }
 
-
 /*
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     POICalloutView *calloutView = [[POICalloutView alloc] initWithFrame:CGRectMake(0.0, 0.0, 280.0, 87.0)];
@@ -145,7 +142,6 @@ calloutAccessoryControlTapped:(UIControl *)control {
             sodvc.managedObjectContext  = self.managedObjectContext;
         }
     }
-    NSLog(@"inside prepare for segue");
 }
 
 @end

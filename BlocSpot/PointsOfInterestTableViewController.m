@@ -163,10 +163,7 @@ static NSString * const kShowObjectDetail          = @"BlocSpot Object Detail Vi
     cell.poiTitle.text = pointOfInterest.name;
     cell.poiNotes.text = pointOfInterest.note;
     cell.object = [[BlocSpotModel alloc] initWithPointOfInterest:pointOfInterest];
-    CLLocation *poiLocation = [[CLLocation alloc] initWithLatitude:[pointOfInterest.latitude doubleValue] longitude:[pointOfInterest.longitude doubleValue]];
-    CLLocationDistance distance = [poiLocation distanceFromLocation:self.userLocation.location];
-    NSString *distanceText = [NSString stringWithFormat:@"%.1f mi", distance * 0.000621371];
-    cell.poiDistanceLabel.text = distanceText;
+    cell.poiDistanceLabel.text = [NSString stringWithFormat:@"%.1f mi", cell.object.currentDistanceFromUser * 0.000621371];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -218,7 +215,7 @@ static NSString * const kShowObjectDetail          = @"BlocSpot Object Detail Vi
             for (PointOfInterest *poi in [self.fetchedResultsController fetchedObjects]) {
                 [allLocations addObject:[[BlocSpotModel alloc] initWithPointOfInterest:poi]];
             }
-            mapvc.searchResultObjectAnnotations = allLocations;
+            mapvc.blocSpotObjects = allLocations;
 
             // pass the database context
             self.mapViewController.managedObjectContext = self.managedObjectContext;

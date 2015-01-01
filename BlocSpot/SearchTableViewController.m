@@ -336,7 +336,7 @@
             for (PointOfInterest *poi in [self.fetchedResultsController fetchedObjects]) {
                 [allLocations addObject:[[BlocSpotModel alloc] initWithPointOfInterest:poi]];
             }
-            self.mapViewController.searchResultObjectAnnotations = allLocations;
+            self.mapViewController.blocSpotObjects = allLocations;
             
             // pass the database context
             self.mapViewController.managedObjectContext = self.managedObjectContext;

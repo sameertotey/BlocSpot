@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-
 @interface UserLocation : NSObject <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocation *location;

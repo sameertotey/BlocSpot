@@ -8,8 +8,14 @@
 
 #import "UserLocation.h"
 #import "BlocSpotModel.h"
+#import "MonitoringManager.h"
 
 NSString *const kUserLocationUpdated = @"UserLocationUpdated";
+
+@interface UserLocation ()
+@property (nonatomic, strong)MonitoringManager *monitoringManager;
+@property (nonatomic, assign)BOOL monitoringSignificantLocationUpdatesOnly;
+@end
 
 @implementation UserLocation
 
@@ -20,9 +26,8 @@ NSString *const kUserLocationUpdated = @"UserLocationUpdated";
         self.location = [[CLLocation alloc] initWithLatitude:0 longitude:0];
         // start by locating user's current position
         [self startStandardUpdates];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(monitorAnnotationRegion:) name:kAddRegionMonitoringForAnnotation object:nil];
-
+        self.monitoringManager = [[MonitoringManager alloc] init];
+        self.monitoringManager.userLocation = self;
     }
     return self;
 }
@@ -36,11 +41,6 @@ NSString *const kUserLocationUpdated = @"UserLocationUpdated";
     });
     return sharedInstance;
 }
-
-- (void) dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 
 - (CLLocationManager *)locationManager {
     if (!_locationManager) {
@@ -67,23 +67,6 @@ NSString *const kUserLocationUpdated = @"UserLocationUpdated";
     [self.locationManager startUpdatingLocation];
 }
 
-- (void)monitorAnnotationRegion:(NSNotification *)annotation {
-    BlocSpotModel *annotationObject;
-    if ([annotation.object isKindOfClass:[BlocSpotModel class]]) {
-        annotationObject = annotation.object;
-    }
-    
-    // we will set the radius to 250
-    CLCircularRegion *geoRegion = [[CLCircularRegion alloc] initWithCenter:annotationObject.coordinate radius:250 identifier:annotationObject.title];
-    if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
-        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways) {
-            // Create the geographic region to be monitored.
-            [self.locationManager startMonitoringForRegion:geoRegion];
-            NSLog(@"Started monitoring %@", geoRegion);
-        }
-    }
-}
-
 #pragma mark - CLLocationManagerDelegate methods
 
 // Delegate method from the CLLocationManagerDelegate protocol.
@@ -99,15 +82,14 @@ NSString *const kUserLocationUpdated = @"UserLocationUpdated";
               location.coordinate.longitude);
         self.location = location;
         [[NSNotificationCenter defaultCenter] postNotificationName:kUserLocationUpdated object:location];
+        [self.monitoringManager resetRegionMonitoring];
+        
+        if (!self.monitoringSignificantLocationUpdatesOnly) {
+            [manager stopUpdatingLocation]; // we only want one update, and now switch to significant location updates
+            [manager startMonitoringSignificantLocationChanges];
+            self.monitoringSignificantLocationUpdatesOnly = YES;
+        }
     }
-    
-    // We need to continue receiving the location updates
-    
-    //    [manager stopUpdatingLocation]; // we only want one update
-    
-    //    manager.delegate = nil;         // we might be called again here, even though we
-    // called "stopUpdatingLocation", remove us as the delegate to be sure
-    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -115,7 +97,6 @@ NSString *const kUserLocationUpdated = @"UserLocationUpdated";
     // report any errors returned back from Location Services
     NSLog(@"Location Manager did fail with error %@", error);
 }
-
 
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error  {
     NSLog(@"Location manager monitoring failed for region %@ with %@ error", region, error);
