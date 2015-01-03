@@ -56,6 +56,16 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
     
     [self setNavigationButtons];
     self.title = @"POI Detail";
+    
+    // Background gradient
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = self.view.bounds;
+    gradientLayer.colors = @[(id)[UIColor whiteColor].CGColor,
+                             (id)[UIColor colorWithRed:0.561 green:0.839 blue:0.922 alpha:1].CGColor];
+    gradientLayer.cornerRadius = 4;
+    gradientLayer.masksToBounds = YES;
+    [self.view.layer insertSublayer:gradientLayer atIndex:0];
+
 }
 
 - (void)setNavigationButtons {
@@ -104,7 +114,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
     }
 }
 
-
 #pragma mark - TextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -129,7 +138,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
     [self.view layoutIfNeeded];
 }
 
-
 - (void)doneEditing {
     [self.descriptionTextView resignFirstResponder];
 }
@@ -142,7 +150,7 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
     [super viewWillLayoutSubviews];
     
     // we will adjust the height of the desciption view to fit its text
-    CGSize maxSize = CGSizeMake(CGRectGetWidth(self.view.bounds) - 60, CGFLOAT_MAX);
+    CGSize maxSize = CGSizeMake(CGRectGetWidth(self.view.bounds) - 80, CGFLOAT_MAX);
     
     CGSize descriptionTextViewSize = [self.descriptionTextView sizeThatFits:maxSize];
     self.descriptionTextViewHeightConstraint.constant = descriptionTextViewSize.height;
@@ -166,7 +174,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
             toVC.transitioningDelegate = self;
         }
     }
-    
     [super prepareForSegue:segue sender:sender];
 }
 
@@ -189,7 +196,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
         animator.duration = 1.35;
         animationController = animator;
     }
-    
     return animationController;
 }
 
