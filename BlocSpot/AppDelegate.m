@@ -22,8 +22,24 @@
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     PointsOfInterestTableViewController *rootViewController = (PointsOfInterestTableViewController *)[[navigationController viewControllers] objectAtIndex:0];
     rootViewController.managedObjectContext = self.managedObjectContext;
-    AllPointsOfInterest *allPointsOfInterest = [AllPointsOfInterest sharedInstanceWithContext:self.managedObjectContext];
+    
+    UIUserNotificationType notificationTypes = UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge;
+    
+    UIUserNotificationSettings *userNotificationSettings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
+    
+    [application registerUserNotificationSettings:userNotificationSettings];
+    
+    // instantiate AllPointsOfInterest to load all POIs from core data
+    [AllPointsOfInterest sharedInstanceWithContext:self.managedObjectContext];
     return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    NSLog(@"application did register user notification settings %@", notificationSettings);
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    NSLog(@"application did receive local notification %@", notification);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

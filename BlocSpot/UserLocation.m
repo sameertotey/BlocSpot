@@ -47,22 +47,53 @@ NSString *const kUserLocationUpdated = @"UserLocationUpdated";
         // Create the location manager if this object does not
         // already have one.
         _locationManager = [[CLLocationManager alloc] init];
+        
     }
     return _locationManager;
 }
 
+// Check the authorization status of our application for location services
+-(void)checkAccessForLocationServices
+{
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    
+    switch (status)
+    {
+        case kCLAuthorizationStatusAuthorizedAlways:
+            // nothing to do here
+            break;
+            // Prompt the user for access to Location Services if there is no definitive answer
+        case kCLAuthorizationStatusNotDetermined:
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+            // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+            if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+                [self.locationManager requestAlwaysAuthorization];
+            }
+            break;
+            // Display a message if the user has denied or restricted access to Calendar
+        case kCLAuthorizationStatusDenied:
+        case kCLAuthorizationStatusRestricted:
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Privacy Warning" message:@"Permission was not granted for Location Services"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)startStandardUpdates
 {
+    [self checkAccessForLocationServices];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
     
     // Set a movement threshold for new events.
     self.locationManager.distanceFilter = 500; // meters
-    
-    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
-    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
-        [self.locationManager requestAlwaysAuthorization];
-    }
     
     [self.locationManager startUpdatingLocation];
 }
@@ -104,28 +135,67 @@ NSString *const kUserLocationUpdated = @"UserLocationUpdated";
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
-    
-    NSLog(@"Entered Region");
-    
+    NSLog(@"Entered Region %@", region.identifier);
     if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive) {
         UILocalNotification *reminder = [[UILocalNotification alloc] init];
         [reminder setFireDate:[NSDate date]];
         [reminder setTimeZone:[NSTimeZone localTimeZone]];
         [reminder setHasAction:YES];
         [reminder setAlertAction:@"Show"];
-        [reminder setSoundName:@"bell.mp3"];
-        [reminder setAlertBody:@"Boundary crossed!"];
-        [[UIApplication sharedApplication] scheduleLocalNotification:reminder];
+        [reminder setSoundName: UILocalNotificationDefaultSoundName];
+        [reminder setAlertBody:[NSString stringWithFormat:@"Boundary entered for %@!", region.identifier]];
+//        [[UIApplication sharedApplication] scheduleLocalNotification:reminder];
+        [[UIApplication sharedApplication] presentLocalNotificationNow:reminder];
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
             // Show an alert or otherwise notify the user
+            [self alertRegionMovement:region entering:YES];
+
+
         });
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
+    NSLog(@"Leaving Region %@", region.identifier);
+    if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive) {
+        UILocalNotification *reminder = [[UILocalNotification alloc] init];
+        [reminder setFireDate:[NSDate date]];
+        [reminder setTimeZone:[NSTimeZone localTimeZone]];
+        [reminder setHasAction:YES];
+        [reminder setAlertAction:@"Show"];
+        [reminder setSoundName: UILocalNotificationDefaultSoundName];
+        [reminder setAlertBody:[NSString stringWithFormat:@"Boundary left for %@!", region.identifier]];
+        //        [[UIApplication sharedApplication] scheduleLocalNotification:reminder];
+        [[UIApplication sharedApplication] presentLocalNotificationNow:reminder];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // Show an alert or otherwise notify the user
+            [self alertRegionMovement:(CLRegion *)region entering:NO];
+        });
+    }
+
+}
+
+- (void)alertRegionMovement:(CLRegion *)region entering:(BOOL)entering {
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:@"Region Detected"
+                                                                             message:[NSString stringWithFormat:@"BlocSpot detected %@ the Spot: %@.", entering ? @"Entering" : @"Leaving", region.identifier]
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
     
+    UIAlertAction* addAction = [UIAlertAction actionWithTitle:@"OaKy" style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction * action) {
+                                                          NSLog(@"Alert OK selected");
+                                                      }];
+    [alertController addAction:addAction];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        NSLog(@"Alert Cancel Selected");
+    }];
+    
+    [alertController addAction:cancelAction];
+    
+    [[[UIApplication sharedApplication].delegate window].rootViewController presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

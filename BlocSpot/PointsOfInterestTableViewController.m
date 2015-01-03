@@ -163,6 +163,7 @@ static NSString * const kShowObjectDetail          = @"BlocSpot Object Detail Vi
     cell.poiTitle.text = pointOfInterest.name;
     cell.poiNotes.text = pointOfInterest.note;
     cell.object = [[BlocSpotModel alloc] initWithPointOfInterest:pointOfInterest];
+
     cell.poiDistanceLabel.text = [NSString stringWithFormat:@"%.1f mi", cell.object.currentDistanceFromUser * 0.000621371];
 }
 

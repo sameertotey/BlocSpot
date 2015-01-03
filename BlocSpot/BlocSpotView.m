@@ -11,6 +11,11 @@
 
 @implementation BlocSpotView
 
+- (void)setObject:(BlocSpotModel *)object {
+    _object = object;
+    [self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     
