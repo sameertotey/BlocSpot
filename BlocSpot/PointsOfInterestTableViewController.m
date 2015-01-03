@@ -21,8 +21,9 @@ static NSString * const kShowMapsViewController    = @"Show Maps ViewController"
 static NSString * const kShowSearchViewController  = @"Show Search ViewController";
 static NSString * const kPresentCategoryFilter     = @"Select Category Filter";
 static NSString * const kShowObjectDetail          = @"BlocSpot Object Detail View Controller";
+static NSString * const kShowSinglePOI             = @"ShowSinglePOI";
 
-@interface PointsOfInterestTableViewController () <UIViewControllerTransitioningDelegate>
+@interface PointsOfInterestTableViewController () <UIViewControllerTransitioningDelegate, POITableViewCellDelegate>
 @property (nonatomic, strong) UIBarButtonItem *rightBarButtonItem;
 @property (nonatomic, strong) MapViewController *mapViewController;
 @property (nonatomic, strong) NSString *locationCategory;
@@ -78,7 +79,6 @@ static NSString * const kShowObjectDetail          = @"BlocSpot Object Detail Vi
 
 - (void) mapTapped {
     [self performSegueWithIdentifier:kShowMapsViewController sender:self];
-
 }
 
 - (void) searchTapped {
@@ -165,6 +165,7 @@ static NSString * const kShowObjectDetail          = @"BlocSpot Object Detail Vi
     cell.object = [[BlocSpotModel alloc] initWithPointOfInterest:pointOfInterest];
 
     cell.poiDistanceLabel.text = [NSString stringWithFormat:@"%.1f mi", cell.object.currentDistanceFromUser * 0.000621371];
+    cell.delegate = self;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -202,6 +203,13 @@ static NSString * const kShowObjectDetail          = @"BlocSpot Object Detail Vi
     }
 }
 
+#pragma mark - POITableViewCellDelegate
+
+- (void)didRequestZoomTo:(BlocSpotModel *)object {
+    NSLog(@"Zoom to the map here");
+    [self performSegueWithIdentifier:kShowSinglePOI sender:object];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -221,6 +229,15 @@ static NSString * const kShowObjectDetail          = @"BlocSpot Object Detail Vi
             // pass the database context
             self.mapViewController.managedObjectContext = self.managedObjectContext;
 
+        }
+    } else if ([segue.identifier isEqualToString:kShowSinglePOI]) {
+        if ([segue.destinationViewController isKindOfClass:[MapViewController class]]) {
+            MapViewController *mapvc = (MapViewController *)segue.destinationViewController;
+            if ([sender isKindOfClass:[BlocSpotModel class]]) {
+                mapvc.blocSpotObjects = @[sender];
+            }
+            // pass the database context
+            self.mapViewController.managedObjectContext = self.managedObjectContext;
         }
     } else if ([segue.identifier isEqualToString:kShowSearchViewController]) {
         if ([segue.destinationViewController isKindOfClass:[SearchTableViewController class]]) {

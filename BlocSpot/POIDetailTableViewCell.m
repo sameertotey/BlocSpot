@@ -12,15 +12,10 @@
 @implementation POIDetailTableViewCell
 
 - (void)awakeFromNib {
-    // Background gradient
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = self.bounds;
-    gradientLayer.colors = @[(id)[UIColor whiteColor].CGColor,
-                             (id)[UIColor colorWithRed:0.561 green:0.839 blue:0.922 alpha:1].CGColor];
-    gradientLayer.cornerRadius = 4;
-    gradientLayer.masksToBounds = YES;
-    [self.layer insertSublayer:gradientLayer atIndex:0];
-}
+    self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressFired:)];
+    self.longPressGestureRecognizer.delegate = self;
+    [self addGestureRecognizer:self.longPressGestureRecognizer];
+ }
 
 - (void)setObject:(BlocSpotModel *)object {
     [super setObject:object];
@@ -37,5 +32,6 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 
 @end

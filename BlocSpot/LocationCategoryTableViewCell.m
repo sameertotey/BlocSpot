@@ -24,17 +24,17 @@
     //    CGFloat height = CGRectGetHeight(self.contentView.bounds);
     CGFloat height = 43.5;
     self.accessoryButton.frame = CGRectMake(0, 0, height, height);
-     [self.accessoryButton addTarget:self action:@selector(selectionToggled) forControlEvents:UIControlEventTouchUpInside];
+    [self.accessoryButton addTarget:self action:@selector(selectionToggled) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
 - (void)longPressFired:(UIGestureRecognizer *)gesture {
-    NSLog(@"Long press fired for %@", self.object);
-    [self.delegate cell:self didSelectLocation:self.object];
+    if (gesture.state == UIGestureRecognizerStateBegan){
+        [self.delegate cell:self didSelectLocation:self.object];
+    }
 }
 
 - (void)selectionToggled {
-    NSLog(@"selection toggled");
     [self.delegate cell:self didSelectLocation:self.object];
 }
 

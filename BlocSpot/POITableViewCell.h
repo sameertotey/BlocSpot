@@ -9,8 +9,20 @@
 #import <UIKit/UIKit.h>
 #include "BlocSpotModel.h"
 
+@class POITableViewCell;
+
+@protocol POITableViewCellDelegate <NSObject>
+
+- (void)didRequestZoomTo:(BlocSpotModel *)object;
+
+@end
+
 @interface POITableViewCell : UITableViewCell
 
 @property(nonatomic, strong)BlocSpotModel *object;
+@property(nonatomic, strong)UILongPressGestureRecognizer *longPressGestureRecognizer;
+@property(nonatomic, weak)id<POITableViewCellDelegate> delegate;
+
+- (void)longPressFired:(UIGestureRecognizer *)gesture;
 
 @end

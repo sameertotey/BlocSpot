@@ -135,7 +135,6 @@ NSString *const kUserLocationUpdated = @"UserLocationUpdated";
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
-    NSLog(@"Entered Region %@", region.identifier);
     if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive) {
         UILocalNotification *reminder = [[UILocalNotification alloc] init];
         [reminder setFireDate:[NSDate date]];
@@ -158,7 +157,6 @@ NSString *const kUserLocationUpdated = @"UserLocationUpdated";
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
-    NSLog(@"Leaving Region %@", region.identifier);
     if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive) {
         UILocalNotification *reminder = [[UILocalNotification alloc] init];
         [reminder setFireDate:[NSDate date]];
@@ -185,12 +183,10 @@ NSString *const kUserLocationUpdated = @"UserLocationUpdated";
     
     UIAlertAction* addAction = [UIAlertAction actionWithTitle:@"OaKy" style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction * action) {
-                                                          NSLog(@"Alert OK selected");
                                                       }];
     [alertController addAction:addAction];
     
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        NSLog(@"Alert Cancel Selected");
     }];
     
     [alertController addAction:cancelAction];

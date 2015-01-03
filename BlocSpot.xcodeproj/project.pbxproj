@@ -165,6 +165,8 @@
 				054A1A711A51F673001730BE /* POIDetailTableViewCell.m */,
 				05AE24221A48956800C8D2BF /* POITableViewCell.h */,
 				05AE24231A48956800C8D2BF /* POITableViewCell.m */,
+				054960281A4B389A0027C184 /* LocationCategoryTableViewCell.h */,
+				054960291A4B389A0027C184 /* LocationCategoryTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -202,8 +204,6 @@
 				056D24C01A3124E5003BD7DF /* MapViewController.m */,
 				054A1A6D1A51F400001730BE /* SearchTableViewController.h */,
 				054A1A6E1A51F400001730BE /* SearchTableViewController.m */,
-				054960281A4B389A0027C184 /* LocationCategoryTableViewCell.h */,
-				054960291A4B389A0027C184 /* LocationCategoryTableViewCell.m */,
 				05AE24251A4A1AA800C8D2BF /* CategoryListTableViewController.h */,
 				05AE24261A4A1AA800C8D2BF /* CategoryListTableViewController.m */,
 				054989BE1A3FD94F00A560C8 /* AddNewCategoryViewController.h */,

@@ -113,6 +113,7 @@
                         <segue destination="zVl-0D-Qjj" kind="show" identifier="Show Maps ViewController" id="bXm-NV-me7"/>
                         <segue destination="w6k-px-lw2" kind="show" identifier="Show Search ViewController" id="qdt-Dd-BuV"/>
                         <segue destination="gMg-CG-Oov" kind="show" identifier="BlocSpot Object Detail View Controller" id="oVp-q3-sle"/>
+                        <segue destination="zVl-0D-Qjj" kind="show" identifier="ShowSinglePOI" id="eD2-Ep-UTh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gog-yg-9DL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -153,11 +154,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="rightBarButtonItem" destination="Y5Q-K2-TY5" id="7ET-G8-0jJ"/>
+                        <segue destination="zVl-0D-Qjj" kind="show" identifier="ShowSingleSearchObject" id="jGR-Cb-gTX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ML-8F-YCP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="457" y="398"/>
+            <point key="canvasLocation" x="379" y="399"/>
         </scene>
         <!--Points of Interest Map-->
         <scene sceneID="ZAJ-fq-Gfw">
@@ -253,6 +255,7 @@
                         <outlet property="descriptionTextViewHeightConstraint" destination="O0j-7H-dSk" id="fC9-YT-eNW"/>
                         <outlet property="selectCategoryButton" destination="TFG-Bl-qqQ" id="Rie-vp-t3x"/>
                         <outlet property="titleTextField" destination="63n-20-g7y" id="KPH-GF-yPV"/>
+                        <segue destination="zVl-0D-Qjj" kind="show" identifier="Show object on map" id="Ign-PW-o5a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t7D-xG-DGy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -551,8 +554,8 @@
         <image name="navigation" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Okp-oT-yev"/>
-        <segue reference="oVp-q3-sle"/>
-        <segue reference="bXm-NV-me7"/>
+        <segue reference="4kl-m3-6WI"/>
+        <segue reference="mK0-P2-Mej"/>
+        <segue reference="Ign-PW-o5a"/>
     </inferredMetricsTieBreakers>
 </document>

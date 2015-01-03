@@ -33,7 +33,7 @@
     {
         BlocSpotModel *blocSpotObject = [self.blocSpotObjects objectAtIndex:0];
         
-        self.title = blocSpotObject.mapItem.name;
+        self.title = blocSpotObject.title;
         
         // add the single annotation to our map
         [self.mapView addAnnotation:blocSpotObject];
@@ -42,7 +42,7 @@
         [self.mapView selectAnnotation:[self.mapView.annotations objectAtIndex:0] animated:YES];
         
         // center the region around this map item's coordinate
-        self.mapView.centerCoordinate = blocSpotObject.mapItem.placemark.coordinate;
+        self.mapView.centerCoordinate = blocSpotObject.coordinate;
     }
     else
     {
@@ -53,9 +53,9 @@
         {
             [self.mapView addAnnotation:annotation];
         }
-        [self.mapView showAnnotations:self.blocSpotObjects animated:YES];
     }
-    
+    [self.mapView showAnnotations:self.blocSpotObjects animated:YES];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteAnnotation:) name:kRemovedAnnotation object:nil];
 }
 
@@ -102,7 +102,6 @@
 - (void)mapView:(MKMapView *)mapView
  annotationView:(MKAnnotationView *)view
 calloutAccessoryControlTapped:(UIControl *)control {
-    NSLog(@"mapview accessory tapped");
     
     [self performSegueWithIdentifier:@"Show Searched Object Detail" sender:view.annotation];
     

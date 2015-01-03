@@ -12,11 +12,13 @@
 #import "AddNewCategoryViewController.h"
 #import "ModalTransitionAnimator.h"
 #import "CategoryListTableViewController.h"
+#import "MapViewController.h"
 
 // Segue Id
 static NSString * const kAddLocationCategory       = @"addLocationCategory";
-static NSString * const kListLocationCategory       = @"listLocationCategory";
+static NSString * const kListLocationCategory      = @"listLocationCategory";
 static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
+static NSString * const kShowObjectOnMap           = @"Show object on map";
 
 @interface SearchedObjectDetailViewController () <UIViewControllerTransitioningDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
@@ -28,6 +30,7 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 @property (strong, nonatomic)UIBarButtonItem *cancelButton;
 @property (strong, nonatomic)UIBarButtonItem *saveButton;
 @property (strong, nonatomic)UIBarButtonItem *deleteButton;
+@property (strong, nonatomic)UIBarButtonItem *mapButton;
 
 @property (strong, nonatomic)PointOfInterest *managedDetailObject;
 @property (weak, nonatomic) IBOutlet UIButton *selectCategoryButton;
@@ -53,7 +56,8 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
     self.cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelEditing)];
     self.saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed)];
     self.deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deletePressed)];
-    
+    self.mapButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"map"] style:UIBarButtonItemStylePlain target:self action:@selector(mapTapped)];
+
     [self setNavigationButtons];
     self.title = @"POI Detail";
     
@@ -69,7 +73,8 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 }
 
 - (void)setNavigationButtons {
-    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.leftItemsSupplementBackButton = YES;
+    self.navigationItem.leftBarButtonItems = @[self.mapButton];
     self.navigationItem.rightBarButtonItems = @[self.deleteButton, self.saveButton];
     
     if (self.managedDetailObject == nil) {
@@ -78,7 +83,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 }
 
 - (void)savePressed {
-    NSLog(@"Save Pressed");
     if (self.managedDetailObject == nil) {
         self.managedDetailObject = [NSEntityDescription insertNewObjectForEntityForName:@"PointOfInterest" inManagedObjectContext:self.managedObjectContext];
         // set the latitude and longitude here
@@ -93,14 +97,16 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 }
 
 - (void)deletePressed {
-    NSLog(@"Delete Pressed");
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) mapTapped {
+    [self performSegueWithIdentifier:kShowObjectOnMap sender:self];
 }
 
 - (void)saveManagedObject {
     if ([self.managedObjectContext hasChanges]) {
         NSError *error;
-        NSLog(@"Going to save the managed object here.....");
         if (![self.managedObjectContext save:&error]){
             /*
              Replace this implementation with code to handle the error appropriately.
@@ -110,7 +116,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
-
     }
 }
 
@@ -172,6 +177,13 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
             UIViewController *toVC = segue.destinationViewController;
             toVC.modalPresentationStyle = UIModalPresentationCustom;
             toVC.transitioningDelegate = self;
+        }
+    } else if ([segue.identifier isEqualToString:kShowObjectOnMap]) {
+        if ([segue.destinationViewController isKindOfClass:[MapViewController class]]) {
+            MapViewController *mapvc = (MapViewController *)segue.destinationViewController;
+            mapvc.blocSpotObjects = @[self.detailObject];
+            // pass the database context
+            mapvc.managedObjectContext = self.managedObjectContext;
         }
     }
     [super prepareForSegue:segue sender:sender];

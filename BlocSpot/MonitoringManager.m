@@ -75,7 +75,6 @@
         if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways) {
             // Create the geographic region to be monitored.
             [self.userLocation.locationManager startMonitoringForRegion:geoRegion];
-//            NSLog(@"Started monitoring %@", geoRegion);
         }
     }
 }

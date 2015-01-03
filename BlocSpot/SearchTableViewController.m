@@ -13,7 +13,9 @@
 #import "POITableViewCell.h"
 #import "UserLocation.h"
 
-@interface SearchTableViewController ()
+static NSString *const kShowSingleSearchObject = @"ShowSingleSearchObject";
+
+@interface SearchTableViewController ()<POITableViewCellDelegate>
 @property (nonatomic, strong) UISearchBar *searchBar;
 
 @property (nonatomic, assign) MKCoordinateRegion boundingRegion;
@@ -127,7 +129,6 @@
 #pragma mark - Table view delegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //    NSLog(@"Table view did select....");
 }
 
 #pragma mark - Table view data source methods
@@ -170,6 +171,7 @@
         cell.textLabel.text = pointOfInterest.name;
         cell.object = [[BlocSpotModel alloc] initWithPointOfInterest:pointOfInterest];
     }
+    cell.delegate = self;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -260,12 +262,10 @@
     // let us offset the indexes by 1 section to account for the search results
     if (indexPath) {
         indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section + 1];
-        //        NSLog(@"The indexpath is %@", indexPath);
     }
     
     if (newIndexPath) {
         newIndexPath = [NSIndexPath indexPathForRow:newIndexPath.row inSection:newIndexPath.section + 1];
-        //        NSLog(@"The new indexpath is %@", newIndexPath);
     }
     
     switch(type) {
@@ -319,6 +319,12 @@
     [self.tableView endUpdates];
 }
 
+#pragma mark - POITableViewCellDelegate
+
+- (void)didRequestZoomTo:(BlocSpotModel *)object {
+    [self performSegueWithIdentifier:kShowSingleSearchObject sender:object];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -338,6 +344,20 @@
             }
             self.mapViewController.blocSpotObjects = allLocations;
             
+            // pass the database context
+            self.mapViewController.managedObjectContext = self.managedObjectContext;
+            
+        }
+    } else if ([segue.identifier isEqualToString:kShowSingleSearchObject]) {
+        if ([segue.destinationViewController isKindOfClass:[MapViewController class]]) {
+            // We want to hang on the reference to the MapViewController so that it is not dealloced after we return
+            self.mapViewController = [segue destinationViewController];
+            // pass the new bounding region to the map destination view controller
+            self.mapViewController.boundingRegion = self.boundingRegion;
+            // pass the places list to the map destination view controller
+            if ([sender isKindOfClass:[BlocSpotModel class]]) {
+                self.mapViewController.blocSpotObjects = @[sender];
+            }
             // pass the database context
             self.mapViewController.managedObjectContext = self.managedObjectContext;
             

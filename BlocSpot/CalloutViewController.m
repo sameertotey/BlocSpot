@@ -24,7 +24,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 
 
 - (IBAction)visitedButtonTouched:(id)sender {
-    NSLog(@"Visited button touched");
     if (self.annotation.pointOfInterest) {
         NSManagedObjectContext *context = [self.annotation.pointOfInterest managedObjectContext];
         [self.visitedButton setImage:[UIImage imageNamed:@"heart-full"] forState:UIControlStateNormal];
@@ -101,7 +100,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
     
         UIAlertAction* addAction = [UIAlertAction actionWithTitle:@"Message" style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
-                                                                  NSLog(@"Messaging selected");
                                                                   if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"sms:"]]) {
                                                                       [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"sms:"]];
                                                                   }
@@ -110,7 +108,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
     
     
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            NSLog(@"Cancel Selected");
         }];
     
         [actionSheet addAction:cancelAction];

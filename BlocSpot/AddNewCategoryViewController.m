@@ -66,7 +66,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 }
 
 - (void)savePressed {
-    NSLog(@"Save Pressed");
     [self saveManagedObject];
     [self.navigationController popViewControllerAnimated:YES];
 }
