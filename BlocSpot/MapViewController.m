@@ -57,6 +57,7 @@
     [self.mapView showAnnotations:self.blocSpotObjects animated:YES];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteAnnotation:) name:kRemovedAnnotation object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayOverlay:) name:kDisplayOverlay object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -73,7 +74,27 @@
     [self.mapView removeAnnotation:notification.object];
 }
 
+- (void)displayOverlay:(NSNotification *)notification {
+    if ([notification.object isKindOfClass:[MKRoute class]]) {
+        MKRoute *route = notification.object;
+        // Create a region centered on the starting point with a span equal to the route distance
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(route.polyline.coordinate, route.distance, route.distance);
+        [self.mapView setRegion:region];
+        
+        [self.mapView addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
+    }
+  }
+
 #pragma mark - MKMapViewDelegate
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    if ([overlay isKindOfClass:[MKPolyline class]]) {
+        MKPolylineRenderer *overlayRenderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
+        overlayRenderer.strokeColor = [UIColor blueColor];
+        return overlayRenderer;
+    }
+    return nil;
+}
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {

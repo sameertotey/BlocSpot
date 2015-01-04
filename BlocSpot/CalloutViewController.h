@@ -20,4 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareBarButtonItem;
 @property (nonatomic, strong) BlocSpotModel *annotation;
 @property (weak, nonatomic) IBOutlet UIToolbar *callOutToolbar;
+
+extern  NSString * const kDisplayOverlay;
+
 @end

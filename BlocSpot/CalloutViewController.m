@@ -11,9 +11,9 @@
 #import "ModalTransitionAnimator.h"
 #import "CategoryListTableViewController.h"
 
-static NSString * const kListLocationCategory = @"listLocationCategoryFromMap";
+static NSString * const kListLocationCategory      = @"listLocationCategoryFromMap";
 static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
-
+NSString * const kDisplayOverlay            = @"DisplayOverlay";
 
 @implementation CalloutViewController
 
@@ -72,49 +72,76 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 }
 
 - (IBAction)navigateTouched:(id)sender {
-    MKMapItem *from = [MKMapItem mapItemForCurrentLocation];
-
-    CLLocation* fromLocation = from.placemark.location;
     
-    // Create a region centered on the starting point with a 10km span
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(fromLocation.coordinate, 10000, 10000);
+    MKMapItem *from = [MKMapItem mapItemForCurrentLocation];
     
     MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:self.annotation.coordinate addressDictionary:@{}];
     self.annotation.mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
     
-    // Open the item in Maps, specifying the map region to display as well as driving directions to this point from current point.
-    [MKMapItem openMapsWithItems:[NSArray arrayWithObjects:from, self.annotation.mapItem, nil]
-                   launchOptions:[NSDictionary dictionaryWithObjectsAndKeys:
-                                  [NSValue valueWithMKCoordinate:region.center], MKLaunchOptionsMapCenterKey,
-                                  [NSValue valueWithMKCoordinateSpan:region.span], MKLaunchOptionsMapSpanKey,
-                                  MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsDirectionsModeKey,
-                                  nil]];
     
-}
+    MKDirectionsRequest *walkingRouteRequest = [[MKDirectionsRequest alloc] init];
+    walkingRouteRequest.transportType = MKDirectionsTransportTypeWalking;
+    [walkingRouteRequest setSource:from];
+    [walkingRouteRequest setDestination :self.annotation.mapItem];
+    
+    MKDirections *walkingRouteDirections = [[MKDirections alloc] initWithRequest:walkingRouteRequest];
+    [walkingRouteDirections calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse * walkingRouteResponse, NSError *walkingRouteError) {
+        if (walkingRouteError) {
+            NSLog(@"Walking directions had error %@, %@", walkingRouteError, [walkingRouteError userInfo]);
+        } else {
+            // The code doesn't request alternate routes, so add the single calculated route to
+            // a previously declared MKRoute property called walkingRoute.
+            MKRoute *route = walkingRouteResponse.routes[0];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDisplayOverlay object:route];
+        }
+    }];
+
+  }
 
 - (IBAction)shareTouched:(UIBarButtonItem *)sender {
     
-        UIAlertController* actionSheet = [UIAlertController alertControllerWithTitle:@"Select a App to share"
+    UIAlertController* actionSheet = [UIAlertController alertControllerWithTitle:@"Select a App to share"
                                                                        message:@"Please select the appropriate app to share this POI."
                                                                 preferredStyle:UIAlertControllerStyleActionSheet];
     
-        UIAlertAction* addAction = [UIAlertAction actionWithTitle:@"Message" style:UIAlertActionStyleDefault
+    UIAlertAction* addAction = [UIAlertAction actionWithTitle:@"Message" style:UIAlertActionStyleDefault
                                                               handler:^(UIAlertAction * action) {
                                                                   if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"sms:"]]) {
                                                                       [[UIApplication sharedApplication] openURL: [NSURL URLWithString:@"sms:"]];
                                                                   }
                                                               }];
-        [actionSheet addAction:addAction];
+    [actionSheet addAction:addAction];
     
+    UIAlertAction *mapShare = [UIAlertAction actionWithTitle:@"Maps App" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        MKMapItem *from = [MKMapItem mapItemForCurrentLocation];
+        
+        CLLocation* fromLocation = from.placemark.location;
+        
+        // Create a region centered on the starting point with a 10km span
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(fromLocation.coordinate, 10000, 10000);
+        
+        MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:self.annotation.coordinate addressDictionary:@{}];
+        self.annotation.mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+        
+        // Open the item in Maps, specifying the map region to display as well as driving directions to this point from current point.
+        [MKMapItem openMapsWithItems:[NSArray arrayWithObjects:from, self.annotation.mapItem, nil]
+                       launchOptions:[NSDictionary dictionaryWithObjectsAndKeys:
+                                      [NSValue valueWithMKCoordinate:region.center], MKLaunchOptionsMapCenterKey,
+                                      [NSValue valueWithMKCoordinateSpan:region.span], MKLaunchOptionsMapSpanKey,
+                                      MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsDirectionsModeKey,
+                                      nil]];
+         }];
+    [actionSheet addAction:mapShare];
     
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         }];
     
-        [actionSheet addAction:cancelAction];
+    [actionSheet addAction:cancelAction];
     
-        [self presentViewController:actionSheet animated:YES completion:nil];
+    [self presentViewController:actionSheet animated:YES completion:nil];
     
 }
+
 
 - (void) setAnnotation:(BlocSpotModel *)annotation {
     _annotation = annotation;
@@ -154,7 +181,6 @@ static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
             toVC.transitioningDelegate = self;
         }
     }
-    
     [super prepareForSegue:segue sender:sender];
 }
 
