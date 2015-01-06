@@ -20,7 +20,7 @@ static NSString * const kListLocationCategory      = @"listLocationCategory";
 static NSString * const kSegueAddCategoryDismiss   = @"addCategoryDismiss";
 static NSString * const kShowObjectOnMap           = @"Show object on map";
 
-@interface SearchedObjectDetailViewController () <UIViewControllerTransitioningDelegate>
+@interface SearchedObjectDetailViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
@@ -176,7 +176,8 @@ static NSString * const kShowObjectOnMap           = @"Show object on map";
             cltvc.managedObjectContext = self.managedObjectContext;
             UIViewController *toVC = segue.destinationViewController;
             toVC.modalPresentationStyle = UIModalPresentationCustom;
-            toVC.transitioningDelegate = self;
+            self.modalTransitioningDelegate = [[ModalTransitioningDelegate alloc] init];
+            toVC.transitioningDelegate = self.modalTransitioningDelegate;
         }
     } else if ([segue.identifier isEqualToString:kShowObjectOnMap]) {
         if ([segue.destinationViewController isKindOfClass:[MapViewController class]]) {
@@ -187,48 +188,6 @@ static NSString * const kShowObjectOnMap           = @"Show object on map";
         }
     }
     [super prepareForSegue:segue sender:sender];
-}
-
-#pragma mark - UIViewControllerTransitioningDelegate
-
-/*
- Called when presenting a view controller that has a transitioningDelegate
- */
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
-                                                                  presentingController:(UIViewController *)presenting
-                                                                      sourceController:(UIViewController *)source
-{
-    id<UIViewControllerAnimatedTransitioning> animationController;
-    
-    // List Category
-    if ([presented isKindOfClass:[UINavigationController class]] &&
-        [((UINavigationController *)presented).topViewController isKindOfClass:[CategoryListTableViewController class]]) {
-        ModalTransitionAnimator *animator = [[ModalTransitionAnimator alloc] init];
-        animator.appearing = YES;
-        animator.duration = 1.35;
-        animationController = animator;
-    }
-    return animationController;
-}
-
-/*
- Called when dismissing a view controller that has a transitioningDelegate
- */
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
-{
-    id<UIViewControllerAnimatedTransitioning> animationController;
-    
-    // Add Category
-    if ([dismissed isKindOfClass:[UINavigationController class]] &&
-        [((UINavigationController *)dismissed).topViewController isKindOfClass:[CategoryListTableViewController class]]) {
-
-        ModalTransitionAnimator  *animator = [[ModalTransitionAnimator alloc] init];
-        animator.appearing = NO;
-        animator.duration = 0.35;
-        animationController = animator;
-    }
-    
-    return animationController;
 }
 
 #pragma mark - Storyboard unwinding

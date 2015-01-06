@@ -12,5 +12,6 @@
 @interface SearchedObjectDetailViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong)BlocSpotModel *detailObject;
+@property (nonatomic) id<UIViewControllerTransitioningDelegate> modalTransitioningDelegate;
 
 @end

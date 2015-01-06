@@ -11,3 +11,8 @@
 @interface ModalTransitionAnimator : BaseTransitionAnimator
 
 @end
+
+@interface ModalTransitioningDelegate : NSObject <UIViewControllerTransitioningDelegate>
+
+@end
+
