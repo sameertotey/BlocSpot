@@ -173,14 +173,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i23-tD-mtp">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i23-tD-mtp">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <connections>
                                     <outlet property="delegate" destination="zVl-0D-Qjj" id="Z5h-Xn-zdD"/>
                                 </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="i23-tD-mtp" firstAttribute="leading" secondItem="ZTM-e7-i0L" secondAttribute="leading" id="5wO-qu-1rS"/>
+                            <constraint firstItem="i23-tD-mtp" firstAttribute="top" secondItem="Sfg-JH-kqh" secondAttribute="bottom" id="GTS-2m-NeX"/>
+                            <constraint firstAttribute="trailing" secondItem="i23-tD-mtp" secondAttribute="trailing" id="uow-rq-NUV"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="i23-tD-mtp" secondAttribute="bottom" id="vPi-VF-CYk"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
@@ -554,8 +560,8 @@
         <image name="navigation" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mK0-P2-Mej"/>
-        <segue reference="Ign-PW-o5a"/>
         <segue reference="aSe-Pa-3qx"/>
+        <segue reference="Ign-PW-o5a"/>
+        <segue reference="M4C-Nf-JBi"/>
     </inferredMetricsTieBreakers>
 </document>
